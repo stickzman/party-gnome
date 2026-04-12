@@ -36,10 +36,12 @@ metadata/_edit_use_anchors_ = true
 
 [node name="barbhealthlabel" type="Label" parent="AnimatedSprite2D/barbhealth" unique_id=724443168]
 layout_mode = 0
-offset_right = 440.0
-offset_bottom = 74.0
-theme_override_font_sizes/font_size = 58
-text = "asdf"
+offset_left = 59.0
+offset_top = -4.0
+offset_right = 396.0
+offset_bottom = 88.0
+theme_override_font_sizes/font_size = 67
+text = "Health"
 horizontal_alignment = 1
 
 [node name="barb_intent" type="Label" parent="AnimatedSprite2D" unique_id=762954219]

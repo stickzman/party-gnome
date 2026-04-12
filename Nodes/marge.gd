@@ -4,7 +4,7 @@ extends Node2D
 
 var marge_max_health = 15
 var marge_health = 15
-var base_atk = 5 
+var base_atk = 5
 var base_def = 2
 var base_heal = 1
 
@@ -12,7 +12,7 @@ var base_heal = 1
 
 var atkup = 0
 var defup = 0
-var healup = 0 
+var healup = 0
 
 #Beaus Base Stats combined with the changing "upgradable variable" 
 
@@ -30,14 +30,14 @@ func _ready() -> void:
 	$AnimatedSprite2D/margehealth.max_value = marge_max_health
 	$AnimatedSprite2D/margehealth.value = marge_health
 	$AnimatedSprite2D/margehealth/margehealthlabel.text = str(marge_health) + "/" + str(marge_max_health)
-	atkup = 0 
-	defup = 0 
-	healup = 0 
+	atkup = 0
+	defup = 0
+	healup = 0
 
 func update_marge_health():
 	$AnimatedSprite2D/margehealth.value = marge_health
 	$AnimatedSprite2D/margehealth/margehealthlabel.text = str(marge_health) + "/" + str(marge_max_health)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
