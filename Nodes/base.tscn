@@ -85,7 +85,7 @@ texture = ExtResource("1_fyxmt")
 [sub_resource type="TileSet" id="TileSet_doy6r"]
 sources/0 = SubResource("TileSetAtlasSource_2pays")
 
-[node name="Node2D" type="Node2D" unique_id=716799636]
+[node name="GameManager" type="Node2D" unique_id=716799636]
 script = ExtResource("1_t3qsy")
 
 [node name="TileMap" type="TileMap" parent="." unique_id=337153419]
