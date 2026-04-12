@@ -51,7 +51,6 @@ func choose_move_char():
 	
 	#PICK RANDOM BARB ACTION FROM ACTION ARRAY, SHOWCASE INTENT, PREP MOVE STATE FOR END TURN	
 	var barb_action = $barb.barb_actions.pick_random()
-	print(barb_action)
 	if barb_action == "attack":
 		$barb/AnimatedSprite2D/barb_intent.text = "Attack " + str($barb.atk)
 		barb_attack = true
@@ -67,7 +66,6 @@ func choose_move_char():
 	
 	#PICK RANDOM BEAU ACTION FROM ACTION ARRAY, SHOWCASE INTENT, PREP MOVE STATE FOR END TURN	
 	var beau_action = $beau.beau_actions.pick_random()
-	print(beau_action)
 	if beau_action == "attack":
 		$beau/AnimatedSprite2D/beau_intent.text = "Attack " + str($beau.atk)
 		beau_attack = true
@@ -83,7 +81,6 @@ func choose_move_char():
 	
 	#PICK RANDOM MARGE ACTION FROM ACTION ARRAY, SHOWCASE INTENT, PREP MOVE STATE FOR END TURN	
 	var marge_action = $marge.marge_actions.pick_random()
-	print(marge_action)
 	if marge_action == "attack":
 		$marge/AnimatedSprite2D/marge_intent.text = "Attack " + str($marge.atk)
 		marge_attack = true
@@ -100,9 +97,7 @@ func choose_move_char():
 #function to grab bosses move choice and output intention 
 func choose_boss_move():
 	var boss_action = $FinalBoss.boss_attacks.pick_random()
-	var boss_target = $FinalBoss.boss_target.pick_random() 
-	print(boss_action)
-	print(boss_target)
+	boss_target = $FinalBoss.boss_target.pick_random() 
 	if boss_action == "b_attack":
 		$FinalBoss/Sprite2D/boss_intent.text = "Attack " + str(boss_target) + " for 25"
 		boss_attack = true
