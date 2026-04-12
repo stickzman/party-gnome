@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Ingredient" format=3 uid="uid://u8a4klf0qki1"]
 
-[ext_resource type="Script" uid="uid://bvw1vom4rubt2" path="res://Entities/Ingredient.gd" id="1_b0jvg"]
+[ext_resource type="Script" uid="uid://bvw1vom4rubt2" path="res://Resources/Brewing/Ingredients/Ingredient.gd" id="1_b0jvg"]
 [ext_resource type="Resource" uid="uid://nhogpvesbnjf" path="res://Resources/Brewing/Buffs/LemonBuff.tres" id="1_rcw5e"]
 [ext_resource type="Texture2D" uid="uid://cb2sa018rm4cq" path="res://Assets/Placeholder Art/lemon.jpg" id="3_3r83o"]
 

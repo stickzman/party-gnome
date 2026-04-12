@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Ingredient" format=3 uid="uid://kg3mlvi36hl5"]
 
-[ext_resource type="Script" uid="uid://bvw1vom4rubt2" path="res://Entities/Ingredient.gd" id="1_soejx"]
+[ext_resource type="Script" uid="uid://bvw1vom4rubt2" path="res://Resources/Brewing/Ingredients/Ingredient.gd" id="1_soejx"]
 [ext_resource type="Texture2D" uid="uid://bt7j6kkj4r33b" path="res://Assets/Placeholder Art/lotus.jpg" id="2_mr4x3"]
 
 [resource]
