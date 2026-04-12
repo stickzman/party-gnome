@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Buff" format=3 uid="uid://nhogpvesbnjf"]
+
+[ext_resource type="Script" uid="uid://dx3a66q4hh0g" path="res://Resources/Brewing/Buffs/Buff.gd" id="1_5aq2l"]
+
+[resource]
+script = ExtResource("1_5aq2l")
+healthValueModifier = 4
+metadata/_custom_type_script = "uid://dx3a66q4hh0g"

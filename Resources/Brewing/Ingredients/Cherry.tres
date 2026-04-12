@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Ingredient" format=3 uid="uid://ciabhi263i8f8"]
+
+[ext_resource type="Script" uid="uid://bvw1vom4rubt2" path="res://Resources/Brewing/Ingredients/Ingredient.gd" id="1_i8esf"]
+[ext_resource type="Resource" uid="uid://0tv2yebns11e" path="res://Resources/Brewing/Buffs/CherryBuff.tres" id="1_r514c"]
+[ext_resource type="Texture2D" uid="uid://d0nbl1t3wyn0t" path="res://Assets/Placeholder Art/cherry.jpg" id="3_0775o"]
+
+[resource]
+script = ExtResource("1_i8esf")
+name = "Cherry"
+effectDescription = "??"
+sprite = ExtResource("3_0775o")
+amountInDeck = 3
+effectBuff = ExtResource("1_r514c")
+metadata/_custom_type_script = "uid://bvw1vom4rubt2"

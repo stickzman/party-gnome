@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Ingredient" format=3 uid="uid://dul2jb63sl3r4"]
+
+[ext_resource type="Script" uid="uid://bvw1vom4rubt2" path="res://Resources/Brewing/Ingredients/Ingredient.gd" id="1_5ecoa"]
+[ext_resource type="Resource" uid="uid://cak2taa8t3as1" path="res://Resources/Brewing/Buffs/GrapeBuff.tres" id="1_kr8xx"]
+[ext_resource type="Texture2D" uid="uid://blfa713saqrsu" path="res://Assets/Placeholder Art/grapes.jpg" id="3_u5h8d"]
+
+[resource]
+script = ExtResource("1_5ecoa")
+name = "Grapes"
+sprite = ExtResource("3_u5h8d")
+amountInDeck = 3
+effectBuff = ExtResource("1_kr8xx")
+metadata/_custom_type_script = "uid://bvw1vom4rubt2"

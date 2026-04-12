@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="PotionBelt" format=3 uid="uid://0nfwnn5r3pud"]
+
+[ext_resource type="Script" uid="uid://5pkd7v240agy" path="res://Resources/Brewing/PotionBelt.gd" id="1_mpiiy"]
+
+[resource]
+script = ExtResource("1_mpiiy")
+metadata/_custom_type_script = "uid://5pkd7v240agy"
