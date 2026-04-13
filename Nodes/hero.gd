@@ -34,19 +34,16 @@ func chooseIntent():
 	healing = 0
 	defense = 0
 	attack = 0
-	var stat = 0
 	match intent:
 		INTENT.ATTACK:
 			attack = baseAttack
-			stat = attack
+			intentText.text = "ATTACK %s" % attack
 		INTENT.DEFEND:
 			defense = baseDefense
-			stat = defense
+			intentText.text = "DEFEND %s" % defense
 		INTENT.HEAL:
 			healing = baseHeal
-			stat = healing
-	# Display intent/amount
-	intentText.text = "%s %s" % [INTENT.keys()[intent], stat]
+			intentText.text = "HEAL %s" % healing
 
 # Reduce incoming damage by defense, then return the remaining damage
 func defend(damage: int):
