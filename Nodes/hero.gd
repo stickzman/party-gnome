@@ -7,7 +7,7 @@ extends Node2D
 @onready var intentText := $IntentText
 
 @export var texture: Texture2D
-@export var maxHealth := 20
+@export var maxHealth := 15
 @export var baseAttack := 5
 @export var baseDefense := 2
 @export var baseHeal := 1
