@@ -3,8 +3,8 @@ extends Node2D
 
 @onready var sprite := $Sprite
 @onready var healthBar := $HealthBar
-@onready var healthText := $HealthBar/HealthText
-@onready var intentText := $IntentText
+@onready var healthLabel := $HealthBar/HealthText
+@onready var intentLabel := $IntentText
 @onready var nameLabel := $NameText
 
 @export var heroName: String
@@ -27,7 +27,7 @@ func _ready():
 	if (texture): sprite.texture = texture
 	healthBar.max_value = maxHealth
 	healthBar.value = health
-	healthText.text = "%s / %s" % [health, maxHealth]
+	healthLabel.text = "%s / %s" % [health, maxHealth]
 
 func chooseIntent():
 	if isDead(): return
@@ -39,13 +39,13 @@ func chooseIntent():
 	match intent:
 		INTENT.ATTACK:
 			attack = baseAttack
-			intentText.text = "ATTACK %s" % attack
+			intentLabel.text = "ATTACK %s" % attack
 		INTENT.DEFEND:
 			defense = baseDefense
-			intentText.text = "DEFEND %s" % defense
+			intentLabel.text = "DEFEND %s" % defense
 		INTENT.HEAL:
 			healing = baseHeal
-			intentText.text = "HEAL %s" % healing
+			intentLabel.text = "HEAL %s" % healing
 
 # Reduce incoming damage by defense, then return the remaining damage
 func defend(damage: int):
@@ -65,10 +65,10 @@ func updateHealth(amount: int):
 	health += amount
 	health = clampi(health, 0, maxHealth) # Clamp health to 0-maxHealth
 	healthBar.value = health
-	healthText.text = "%s / %s" % [health, maxHealth]
+	healthLabel.text = "%s / %s" % [health, maxHealth]
 	if (health <= 0):
 		sprite.flip_v = true
-		intentText.text = ""
+		intentLabel.text = ""
 
 func isDead():
 	return health <= 0
