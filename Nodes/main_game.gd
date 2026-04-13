@@ -5,6 +5,11 @@ extends Node2D
 @onready var beau := $Beau
 @onready var boss := $FinalBoss
 
+# This array should match the order of TARGETS in final_boss.gd
+# Yes, this is very hacky but it makes grabbing the target ref easier and it's a game jam,
+# so really what do you want from me?
+@onready var heroes = [barb, marge, beau]
+
 #Game States
 enum GAME_STATE {
 	IDLE, # Placeholder state to fallback to until the other states are implemented
@@ -29,7 +34,7 @@ func _process(_delta: float) -> void:
 func random_moves_phase():
 	if state != GAME_STATE.CHOOSING_ACTIONS: return
 	choose_move_char()
-	boss.chooseIntent()
+	choose_boss_target()
 	state = GAME_STATE.IDLE
 	
 #function to grab from characters arrays and choose what move they are doing
@@ -37,6 +42,12 @@ func choose_move_char():
 	barb.chooseIntent()
 	beau.chooseIntent()
 	marge.chooseIntent()
+
+# keep choosing targets until you get a non-dead one
+func choose_boss_target():
+	var targetIndex = boss.chooseIntent()
+	while targetIndex < heroes.size() and heroes[targetIndex].isDead():
+		targetIndex = boss.chooseIntent()
 
 #resolves the turn by attacking boss, setting move state to false, then having boss attack and setting his attack state to false
 func _on_end_turn_button_down() -> void:
@@ -52,13 +63,13 @@ func _on_end_turn_button_down() -> void:
 	
 	# Resolve Boss Attacks
 	match boss.target:
-		boss.TARGETS.ALL:
+		FinalBoss.TARGETS.ALL:
 			for hero in [barb, beau, marge]: hero.hit(boss.attack)
-		boss.TARGETS.BEAU:
+		FinalBoss.TARGETS.BEAU:
 			beau.hit(boss.attack)
-		boss.TARGETS.BARB:
+		FinalBoss.TARGETS.BARB:
 			barb.hit(boss.attack)
-		boss.TARGETS.MARGE:
+		FinalBoss.TARGETS.MARGE:
 			marge.hit(boss.attack)
 		
 	state = GAME_STATE.CHOOSING_ACTIONS

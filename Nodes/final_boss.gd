@@ -12,7 +12,7 @@ var attack := 0
 var maxHealth := 100
 var health := maxHealth
 
-enum TARGETS {ALL, BARB, MARGE, BEAU}
+enum TARGETS {BARB, MARGE, BEAU, ALL}
 var target: TARGETS
 
 # Called when the node enters the scene tree for the first time.
@@ -27,6 +27,7 @@ func chooseIntent():
 	attack = randi_range(3, maxAttack)
 	if target == TARGETS.ALL: attack /= 3 # If attacking all heroes, reduce the damage appropiately
 	intentText.text = "Attacking %s for %s damage" % [TARGETS.keys()[target], attack]
+	return target
 
 func hit(damage: int):
 	updateHealth(-damage)
