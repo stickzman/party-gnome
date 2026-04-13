@@ -25,7 +25,6 @@ func _ready():
 	healthBar.max_value = maxHealth
 	healthBar.value = health
 	healthText.text = "%s / %s" % [health, maxHealth]
-	chooseIntent()
 
 func chooseIntent():
 	if isDead(): return
@@ -64,7 +63,9 @@ func updateHealth(amount: int):
 	health = clampi(health, 0, maxHealth) # Clamp health to 0-maxHealth
 	healthBar.value = health
 	healthText.text = "%s / %s" % [health, maxHealth]
-	if (health <= 0): sprite.flip_v = true
+	if (health <= 0):
+		sprite.flip_v = true
+		intentText.text = ""
 
 func isDead():
 	return health <= 0

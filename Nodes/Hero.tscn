@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://cyo3n5xmkc4od" path="res://Assets/Placeholder Art/Untitled-3.png" id="1_6xbbc"]
 
 [node name="Hero" type="Node2D" unique_id=272325375]
-position = Vector2(757, 505)
 script = ExtResource("1_1no4y")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1525626712]
