@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("1_i8esf")
 name = "Cherry"
-effectDescription = "??"
+effectDescription = "+5 DMG"
 sprite = ExtResource("3_0775o")
 amountInDeck = 3
 effectBuff = ExtResource("1_r514c")
