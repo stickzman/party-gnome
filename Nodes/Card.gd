@@ -1,6 +1,6 @@
 extends Node2D
 
-signal ingredient_selection_changed
+signal selection_changed
 
 @export var ingredient: Ingredient
 @export var is_selected = false
@@ -20,4 +20,4 @@ func pressed():
 		$SelectionLabel.text = "Unselected"
 		$SelectionLabel.add_theme_color_override("font_color", Color.WHITE)
 		
-	emit_signal("ingredient_selection_changed", self.is_selected, self.ingredient)
+	emit_signal("selection_changed", self.is_selected, self)

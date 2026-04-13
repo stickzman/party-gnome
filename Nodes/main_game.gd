@@ -35,6 +35,8 @@ var boss_target
 func _ready() -> void:
 	state = GAME_STATE.CHOOSING_ACTIONS
 	random_moves_phase()
+	# Connect hand to potion belt (what a sentence)
+	$Hand.connect("potion_created", $PotionBelt.add_potion)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

@@ -7,11 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://67gtde0kcfmt" path="res://Nodes/beau.tscn" id="4_t3qsy"]
 [ext_resource type="PackedScene" uid="uid://bs87hl5bewkst" path="res://Nodes/marge.tscn" id="5_tfdc1"]
 [ext_resource type="Texture2D" uid="uid://b5v8y0ieguooy" path="res://Assets/Placeholder Art/Untitled-5.png" id="7_tfdc1"]
-[ext_resource type="Script" uid="uid://bb21hwwglajct" path="res://Nodes/brewing_manager.gd" id="8_tfdc1"]
 [ext_resource type="Script" uid="uid://d0gp1ffqjhdtb" path="res://Nodes/Hand.gd" id="9_snegy"]
 [ext_resource type="PackedScene" uid="uid://bpt3l2x6lnuup" path="res://Nodes/Card.tscn" id="9_uq6bc"]
 [ext_resource type="Resource" uid="uid://ciabhi263i8f8" path="res://Resources/Brewing/Ingredients/Cherry.tres" id="10_uq6bc"]
 [ext_resource type="Resource" uid="uid://u8a4klf0qki1" path="res://Resources/Brewing/Ingredients/Lemon.tres" id="12_x78u4"]
+[ext_resource type="Script" uid="uid://dv24spjrf0k1g" path="res://Nodes/PotionBelt.gd" id="13_bltit"]
 [ext_resource type="Resource" uid="uid://dul2jb63sl3r4" path="res://Resources/Brewing/Ingredients/Grape.tres" id="13_ld7gu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2pays"]
@@ -128,10 +128,6 @@ offset_right = 949.0
 offset_bottom = 529.0
 text = "END TURN"
 
-[node name="BrewingManager" type="Node2D" parent="." unique_id=1782486662]
-script = ExtResource("8_tfdc1")
-metadata/_edit_lock_ = true
-
 [node name="Hand" type="Node2D" parent="." unique_id=323327224]
 script = ExtResource("9_snegy")
 
@@ -178,5 +174,69 @@ offset_top = 9.0
 offset_right = 457.0
 offset_bottom = 32.0
 text = "No effect. Select some ingredients to show its effect here."
+
+[node name="PotionBelt" type="Node2D" parent="." unique_id=1179922605]
+script = ExtResource("13_bltit")
+
+[node name="Panel" type="Panel" parent="PotionBelt" unique_id=342763302]
+offset_left = 966.0
+offset_top = 4.0
+offset_right = 1383.0
+offset_bottom = 160.0
+
+[node name="FirstPotionSlot" type="Node2D" parent="PotionBelt" unique_id=1659747488]
+
+[node name="UseFirstPotionButton" type="Button" parent="PotionBelt/FirstPotionSlot" unique_id=1929054361]
+offset_left = 978.0
+offset_top = 40.0
+offset_right = 1028.0
+offset_bottom = 71.0
+text = "USE 1"
+
+[node name="FirstPotionLabel" type="Label" parent="PotionBelt/FirstPotionSlot" unique_id=1649688805]
+offset_left = 1044.0
+offset_top = 39.0
+offset_right = 1370.0
+offset_bottom = 97.0
+text = "(empty)"
+autowrap_mode = 2
+
+[node name="UsingPotionLabel" type="Label" parent="PotionBelt/FirstPotionSlot" unique_id=1013332750]
+offset_left = 982.0
+offset_top = 70.0
+offset_right = 1026.0
+offset_bottom = 93.0
+text = "Using"
+
+[node name="SecondPotionSlot" type="Node2D" parent="PotionBelt" unique_id=1442670714]
+
+[node name="UseSecondPotionButton" type="Button" parent="PotionBelt/SecondPotionSlot" unique_id=1517127905]
+offset_left = 980.0
+offset_top = 104.0
+offset_right = 1031.0
+offset_bottom = 135.0
+text = "USE 2"
+
+[node name="SecondPotionLabel" type="Label" parent="PotionBelt/SecondPotionSlot" unique_id=948035254]
+offset_left = 1044.0
+offset_top = 102.0
+offset_right = 1375.0
+offset_bottom = 156.0
+text = "(empty)"
+autowrap_mode = 2
+
+[node name="UsingPotionLabel" type="Label" parent="PotionBelt/SecondPotionSlot" unique_id=1586739675]
+offset_left = 985.0
+offset_top = 136.0
+offset_right = 1029.0
+offset_bottom = 159.0
+text = "Using"
+
+[node name="PotionBeltLabel" type="Label" parent="PotionBelt" unique_id=1878696711]
+offset_left = 978.0
+offset_top = 8.0
+offset_right = 1059.0
+offset_bottom = 31.0
+text = "PotionBelt"
 
 [connection signal="button_down" from="End Turn" to="." method="_on_end_turn_button_down"]
