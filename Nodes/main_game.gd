@@ -1,5 +1,7 @@
 extends Node2D
 
+@onready var hero := $Hero
+
 #Game States
 enum GAME_STATE {
 	IDLE, # Placeholder state to fallback to until the other states are implemented
@@ -50,6 +52,7 @@ func random_moves_phase():
 	
 #function to grab from characters arrays and choose what move they are doing
 func choose_move_char():
+	hero.chooseIntent()
 	#PICK RANDOM BARB ACTION FROM ACTION ARRAY, SHOWCASE INTENT, PREP MOVE STATE FOR END TURN	
 	var barb_action = $barb.barb_actions.pick_random()
 	if barb_action == "attack":
@@ -111,7 +114,14 @@ func choose_boss_move():
 func _on_end_turn_button_down() -> void:
 	print("ended turn")
 	state = GAME_STATE.CONCLUDING_ACTION
-		
+	
+	match hero.intent:
+		Hero.INTENT.ATTACK:
+			$FinalBoss.boss_health -= hero.attack
+			$FinalBoss.update_health()
+		Hero.INTENT.HEAL:
+			hero.heal()
+
 	# RESOLVE BARB MOVE 
 	if barb_attack == true:
 		$FinalBoss.boss_health -= $barb.atk
@@ -158,11 +168,14 @@ func _on_end_turn_button_down() -> void:
 			$beau.beau_health -= 25
 			$beau.update_beau_health()
 		elif boss_target == "marge":
+			hero.hit(25)
 			$marge.marge_health -= 25
 			$marge.update_marge_health()
 		boss_attack = false
 		
 	if boss_wide == true:
+		hero.hit(10)
+
 		$barb.barb_health -= 10
 		$barb.update_barb_health()
 		

@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://67gtde0kcfmt" path="res://Nodes/beau.tscn" id="4_t3qsy"]
 [ext_resource type="PackedScene" uid="uid://bs87hl5bewkst" path="res://Nodes/marge.tscn" id="5_tfdc1"]
 [ext_resource type="Texture2D" uid="uid://b5v8y0ieguooy" path="res://Assets/Placeholder Art/Untitled-5.png" id="7_tfdc1"]
+[ext_resource type="PackedScene" uid="uid://bkj6dlv0sxo3g" path="res://Nodes/Hero.tscn" id="8_tfdc1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2pays"]
 texture = ExtResource("1_fyxmt")
@@ -119,5 +120,9 @@ offset_top = 487.0
 offset_right = 949.0
 offset_bottom = 529.0
 text = "END TURN"
+
+[node name="Hero" parent="." unique_id=272325375 instance=ExtResource("8_tfdc1")]
+position = Vector2(546, 165)
+scale = Vector2(0.33003908, 0.33003908)
 
 [connection signal="button_down" from="End Turn" to="." method="_on_end_turn_button_down"]
