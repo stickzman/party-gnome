@@ -7,7 +7,6 @@ extends Node2D
 @onready var intentLabel := $IntentText
 @onready var nameLabel := $NameText
 
-@export var texture: Texture2D
 @export var maxHealth := 15
 @export var baseAttack := 5
 @export var baseDefense := 2
@@ -23,7 +22,6 @@ var intent: INTENT
 
 func _ready():
 	nameLabel.text = name
-	if (texture): sprite.texture = texture
 	healthBar.max_value = maxHealth
 	healthBar.value = health
 	healthLabel.text = "%s / %s" % [health, maxHealth]
