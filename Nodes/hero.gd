@@ -5,7 +5,9 @@ extends Node2D
 @onready var healthBar := $HealthBar
 @onready var healthText := $HealthBar/HealthText
 @onready var intentText := $IntentText
+@onready var nameLabel := $NameText
 
+@export var heroName: String
 @export var texture: Texture2D
 @export var maxHealth := 15
 @export var baseAttack := 5
@@ -21,6 +23,7 @@ enum INTENT {ATTACK, DEFEND, HEAL}
 var intent: INTENT
 
 func _ready():
+	nameLabel.text = heroName
 	if (texture): sprite.texture = texture
 	healthBar.max_value = maxHealth
 	healthBar.value = health
