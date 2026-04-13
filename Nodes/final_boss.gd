@@ -1,3 +1,4 @@
+class_name FinalBoss
 extends Node2D
 
 @onready var sprite := $Sprite2D
