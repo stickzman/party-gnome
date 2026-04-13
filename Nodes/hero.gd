@@ -12,7 +12,7 @@ extends Node2D
 @export var baseDefense := 2
 @export var baseHeal := 1
 
-var health := maxHealth
+@onready var health := maxHealth
 var healing := 0
 var attack := 0
 var defense := 0
