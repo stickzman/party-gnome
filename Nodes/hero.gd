@@ -30,18 +30,23 @@ func _ready():
 func chooseIntent():
 	if isDead(): return
 	intent = randi() % INTENT.size() as INTENT
-	intentText.text = INTENT.keys()[intent]
 	# Reset all stats for this turn, use base scores if using ability, set to 0 otherwise
 	healing = 0
 	defense = 0
 	attack = 0
+	var stat = 0
 	match intent:
 		INTENT.ATTACK:
 			attack = baseAttack
+			stat = attack
 		INTENT.DEFEND:
 			defense = baseDefense
+			stat = defense
 		INTENT.HEAL:
 			healing = baseHeal
+			stat = healing
+	# Display intent/amount
+	intentText.text = "%s %s" % [INTENT.keys()[intent], stat]
 
 # Reduce incoming damage by defense, then return the remaining damage
 func defend(damage: int):
