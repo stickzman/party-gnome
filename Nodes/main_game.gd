@@ -54,7 +54,9 @@ func _on_end_turn_button_down() -> void:
 	print("ended turn")
 	state = GAME_STATE.CONCLUDING_ACTION
 	
+	# Resolve hero actions
 	for hero in [barb, beau, marge]:
+		if (hero.isDead()): continue
 		match hero.intent:
 			Hero.INTENT.ATTACK:
 				boss.hit(hero.attack)
