@@ -1,23 +1,40 @@
 extends Node2D
 
+@onready var sprite := $Sprite2D
+@onready var healthBar := $HealthBar
+@onready var healthText := $HealthBar/HealthText
+@onready var intentText := $IntentText
+
 #Boss Base Stats
+@export var maxAttack := 25
+var attack := 0
+var maxHealth := 100
+var health := maxHealth
 
-var boss_health = 100
-var boss_max_health = 100
-var boss_attacks = ["b_attack", "b_team_attack"]
-var boss_target = ["barb", "beau", "marge"]
-
+enum TARGETS {ALL, BARB, MARGE, BEAU}
+var target: TARGETS
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$Sprite2D/bosshealth.max_value = boss_max_health
-	$Sprite2D/bosshealth.value = boss_health
-	$Sprite2D/bosshealth/Label.text = str(boss_health) + "/" + str(boss_max_health)
+	healthBar.max_value = maxHealth
+	healthBar.value = health
+	healthText.text = "%s / %s" % [health, maxHealth]
+	chooseIntent()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func chooseIntent():
+	target = randi() % TARGETS.size() as TARGETS
+	attack = randi_range(3, maxAttack)
+	if target == TARGETS.ALL: attack /= 3 # If attacking all heroes, reduce the damage appropiately
+	intentText.text = "Attacking %s for %s damage" % [TARGETS.keys()[target], attack]
 
-func update_health() -> void:
-	$Sprite2D/bosshealth.value = boss_health
-	$Sprite2D/bosshealth/Label.text = str(boss_health) + "/" + str(boss_max_health)
+func hit(damage: int):
+	updateHealth(-damage)
+
+func updateHealth(amount: int):
+	health += amount
+	health = clampi(health, 0, maxHealth) # Clamp health to 0-maxHealth
+	healthBar.value = health
+	healthText.text = "%s / %s" % [health, maxHealth]
+	if (health <= 0):
+		sprite.flip_v = true
+		intentText.text = ""
