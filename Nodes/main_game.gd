@@ -51,7 +51,6 @@ func choose_boss_target():
 
 #resolves the turn by attacking boss, setting move state to false, then having boss attack and setting his attack state to false
 func _on_end_turn_button_down() -> void:
-	print("ended turn")
 	state = GAME_STATE.CONCLUDING_ACTION
 	
 	# Resolve hero actions
