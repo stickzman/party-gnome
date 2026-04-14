@@ -18,6 +18,7 @@ signal hero_clicked
 var healing := 0
 var attack := 0
 var defense := 0
+const maxDefense = 9999
 
 enum INTENT {ATTACK, DEFEND, HEAL}
 var intent
@@ -54,6 +55,7 @@ func updateIntentDisplay():
 			intentLabel.text = "HEAL %s" % healing
 		_:
 			intentLabel.text = ""
+	if defense == maxDefense: intentLabel.text += "\nIMMUNE from damage this turn!"
 
 # Reduce incoming damage by defense, then return the remaining damage
 func defend(damage: int):
@@ -91,7 +93,7 @@ func drinkPotion(potion: Potion):
 	defense += effectBuff.defenseValueModifier
 	healing += effectBuff.healthValueModifier
 
-	if effectBuff.hasImmunity: defense = 9999 # INF only works as a floating-point number, so I'm harding coding this max DEF
+	if effectBuff.hasImmunity: defense = maxDefense
 	if effectBuff.doesRevive && isDead(): updateHealth(1) # Heal 1hp to revive
 	
 	updateIntentDisplay()
