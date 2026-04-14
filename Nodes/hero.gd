@@ -1,0 +1,71 @@
+class_name Hero
+extends Node2D
+
+@onready var sprite := $Sprite
+@onready var healthBar := $HealthBar
+@onready var healthLabel := $HealthBar/HealthText
+@onready var intentLabel := $IntentText
+@onready var nameLabel := $NameText
+
+@export var maxHealth := 15
+@export var baseAttack := 5
+@export var baseDefense := 2
+@export var baseHeal := 1
+
+@onready var health := maxHealth
+var healing := 0
+var attack := 0
+var defense := 0
+
+enum INTENT {ATTACK, DEFEND, HEAL}
+var intent: INTENT
+
+func _ready():
+	nameLabel.text = name
+	healthBar.max_value = maxHealth
+	healthBar.value = health
+	healthLabel.text = "%s / %s" % [health, maxHealth]
+
+func chooseIntent():
+	if isDead(): return
+	intent = randi() % INTENT.size() as INTENT
+	# Reset all stats for this turn, use base scores if using ability, set to 0 otherwise
+	healing = 0
+	defense = 0
+	attack = 0
+	match intent:
+		INTENT.ATTACK:
+			attack = baseAttack
+			intentLabel.text = "ATTACK %s" % attack
+		INTENT.DEFEND:
+			defense = baseDefense
+			intentLabel.text = "DEFEND %s" % defense
+		INTENT.HEAL:
+			healing = baseHeal
+			intentLabel.text = "HEAL %s" % healing
+
+# Reduce incoming damage by defense, then return the remaining damage
+func defend(damage: int):
+	defense -= damage
+	var remainingDamage = 0 if defense >= 0 else abs(defense)
+	defense = 0 # Reset defense to 0
+	return remainingDamage
+
+func hit(damage: int):
+	var remainingDamage = defend(damage)
+	updateHealth(-remainingDamage)
+
+func heal():
+	updateHealth(healing)
+
+func updateHealth(amount: int):
+	health += amount
+	health = clampi(health, 0, maxHealth) # Clamp health to 0-maxHealth
+	healthBar.value = health
+	healthLabel.text = "%s / %s" % [health, maxHealth]
+	if (health <= 0):
+		sprite.flip_v = true
+		intentLabel.text = ""
+
+func isDead():
+	return health <= 0

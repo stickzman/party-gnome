@@ -9,29 +9,49 @@ script = ExtResource("1_xh2d0")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=285156955]
 texture = ExtResource("1_s7vmn")
 
-[node name="bosshealth" type="ProgressBar" parent="Sprite2D" unique_id=2053673868]
-anchors_preset = -1
-anchor_top = -0.128
-anchor_right = 0.924
-offset_left = -191.0
-offset_top = -152.16
-offset_right = -224.22
-offset_bottom = -177.0
-value = 100.0
+[node name="IntentText" type="Label" parent="." unique_id=1754793739]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.5
+offset_top = -225.0
+offset_right = 43.5
+offset_bottom = -202.66667
+grow_horizontal = 2
+grow_vertical = 2
+text = "INTENTION"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=786099870]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -158.0
+offset_top = -195.0
+offset_right = 158.0
+offset_bottom = -168.0
+grow_horizontal = 2
+grow_vertical = 2
 show_percentage = false
 
-[node name="Label" type="Label" parent="Sprite2D/bosshealth" unique_id=1538346210]
-layout_mode = 0
-offset_right = 338.0
-offset_bottom = 23.0
+[node name="HealthText" type="Label" parent="HealthBar" unique_id=1538346210]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -53.5
+offset_top = -11.166668
+offset_right = 53.5
+offset_bottom = 11.166668
+grow_horizontal = 2
+grow_vertical = 2
 text = "BOSS HEALTH"
-horizontal_alignment = 1
-
-[node name="boss_intent" type="Label" parent="Sprite2D" unique_id=1754793739]
-offset_left = -97.0
-offset_top = -257.0
-offset_right = 55.0
-offset_bottom = -209.0
-text = "INTENTION"
 horizontal_alignment = 1
 vertical_alignment = 1
