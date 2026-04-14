@@ -1,6 +1,8 @@
 class_name Hero
 extends Node2D
 
+signal hero_clicked
+
 @onready var sprite := $Sprite
 @onready var healthBar := $HealthBar
 @onready var healthLabel := $HealthBar/HealthText
@@ -92,3 +94,8 @@ func drinkPotion(potion: Potion):
 	if effectBuff.doesRevive && isDead(): updateHealth(1) # Heal 1hp to revive
 	
 	updateIntentDisplay()
+
+
+func _on_click_target_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
+	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
+		hero_clicked.emit(self )
