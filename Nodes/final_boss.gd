@@ -1,10 +1,13 @@
 class_name FinalBoss
 extends Node2D
 
+signal clicked
+
 @onready var sprite := $Sprite2D
 @onready var healthBar := $HealthBar
 @onready var healthText := $HealthBar/HealthText
 @onready var intentText := $IntentText
+@onready var clickTarget := $Area2D
 
 #Boss Base Stats
 @export var maxAttack := 25
@@ -17,6 +20,9 @@ var target: TARGETS
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	clickTarget.connect("input_event", func(_viewport: Node, event: InputEvent, _shape_idx: int):
+		if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT: clicked.emit(self )
+	)
 	healthBar.max_value = maxHealth
 	healthBar.value = health
 	healthText.text = "%s / %s" % [health, maxHealth]
