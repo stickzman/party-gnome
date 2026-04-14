@@ -13,7 +13,6 @@ enum Selection {TOGGLED, SELECTED, NOTHING}
 func toggleSelectPotion(slot: Slot) -> Selection:
 	if (slot == Slot.FIRST and !firstPotion) or (slot == Slot.SECOND and !secondPotion):
 		# Can't select what's not there
-		print("no select")
 		return Selection.NOTHING
 	if slot == selectedPotion:
 		selectedPotion = Slot.NONE
@@ -23,11 +22,11 @@ func toggleSelectPotion(slot: Slot) -> Selection:
 	
 
 func addPotion(potion: Potion) -> Slot:
-	if firstPotion == null:
+	if self.firstPotion == null:
 		self.firstPotion = potion
 		return Slot.FIRST
 		
-	if secondPotion == null:
+	if self.secondPotion == null:
 		self.secondPotion = potion
 		return Slot.SECOND
 		

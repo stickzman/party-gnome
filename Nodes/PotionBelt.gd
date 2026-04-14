@@ -19,7 +19,7 @@ func on_use_first_potion():
 	var selection = potionBelt.toggleSelectPotion(PotionBelt.Slot.FIRST)
 	if selection == PotionBelt.Selection.NOTHING:
 		# nothing to select
-		return;
+		return ;
 	if selection == PotionBelt.Selection.TOGGLED:
 		$FirstPotionSlot/UsingPotionLabel.text = ""
 		emit_signal("stop_using_potion", potionBelt.firstPotion)
@@ -32,7 +32,7 @@ func on_use_second_potion():
 	var selection = potionBelt.toggleSelectPotion(PotionBelt.Slot.SECOND)
 	if selection == PotionBelt.Selection.NOTHING:
 		# nothing to select
-		return;
+		return ;
 	if selection == PotionBelt.Selection.TOGGLED:
 		$SecondPotionSlot/UsingPotionLabel.text = ""
 		emit_signal("stop_using_potion", potionBelt.secondPotion)
@@ -44,8 +44,9 @@ func on_use_second_potion():
 # TODO: bug where adding a second potion overrides the first with the latest
 func add_potion(potion: Potion):
 	potionBelt.addPotion(potion);
+	assert(potionBelt.firstPotion == potion or potionBelt.secondPotion == potion)
+	assert(!(potionBelt.firstPotion == potion and potionBelt.secondPotion == potion))
 	if potionBelt.firstPotion:
-		print("first potion updating")
 		$FirstPotionSlot/FirstPotionLabel.text = potionBelt.firstPotion.effectBuff.get_message();
 		$FirstPotionSlot/UseFirstPotionButton.disabled = false
 	else:
@@ -53,15 +54,13 @@ func add_potion(potion: Potion):
 		$FirstPotionSlot/UseFirstPotionButton.disabled = true
 	
 	if potionBelt.secondPotion:
-		print("second potion updating")
-	
 		$SecondPotionSlot/SecondPotionLabel.text = potionBelt.secondPotion.effectBuff.get_message();
 		$SecondPotionSlot/UseSecondPotionButton.disabled = false
 	else:
 		$SecondPotionSlot/SecondPotionLabel.text = EMPTY_LABEL
 		$SecondPotionSlot/UseSecondPotionButton.disabled = true
 
-# TODO: to be called by game manager or whatever managest selecting characters
+# TODO: to be called by game manager or whatever manage selecting characters
 func use_potion(potion: Potion):
 	if potionBelt.firstPotion == potion:
 		$FirstPotionSlot/FirstPotionLabel.text = EMPTY_LABEL

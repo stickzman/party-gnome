@@ -31,7 +31,7 @@ func on_ingredient_selection_changed(is_selected: bool, card: Node2D):
 	else:
 		var i = selectedCards.find(card)
 		assert(i != -1, "We should keep track of all cards")
-		selectedCards.remove_at(i)	
+		selectedCards.remove_at(i)
 	
 	update_potential_potion();
 	update_can_make_button();
@@ -39,7 +39,8 @@ func on_ingredient_selection_changed(is_selected: bool, card: Node2D):
 func on_potion_make_button_pressed():
 	print("make potion pressed")
 	assert(potentialPotion.canMake(), ">=2 ingredients in potion")
-	emit_signal("potion_created", potentialPotion)
+	potion_created.emit(potentialPotion)
+	potentialPotion = Potion.new() # reset potion
 	
 	# Remove ingredient cards as used
 	for c in selectedCards:
