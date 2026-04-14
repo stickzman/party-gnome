@@ -91,11 +91,14 @@ func drinkPotion(potion: Potion):
 	attack += effectBuff.attackValueModifier
 	attack *= effectBuff.attackMultModifier + 1
 	defense += effectBuff.defenseValueModifier
-	healing += effectBuff.healthValueModifier
-
 	if effectBuff.hasImmunity: defense = maxDefense
-	if effectBuff.doesRevive && isDead(): updateHealth(1) # Heal 1hp to revive
-	
+
+	if effectBuff.doesRevive && isDead():
+		# Heal to revive
+		updateHealth(effectBuff.healthValueModifier)
+	else:
+		healing += effectBuff.healthValueModifier
+
 	updateIntentDisplay()
 
 
