@@ -77,6 +77,7 @@ func updateHealth(amount: int):
 	if (health <= 0):
 		sprite.flip_v = true
 		intent = null
+		updateIntentDisplay()
 	else:
 		sprite.flip_v = false
 
