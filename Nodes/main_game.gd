@@ -40,9 +40,9 @@ func choose_move_char():
 	beau.chooseIntent()
 	marge.chooseIntent()
 
-# keep choosing targets until you get a non-dead one
 func choose_boss_target():
 	var targetIndex = boss.chooseIntent()
+	# keep choosing targets until you get a non-dead one
 	while targetIndex < heroes.size() and heroes[targetIndex].isDead():
 		targetIndex = boss.chooseIntent()
 
