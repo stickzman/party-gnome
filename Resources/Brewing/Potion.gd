@@ -10,6 +10,7 @@ var effectBuff: Buff:
 	get:
 		var lotusBuff = Buff.getLotusBuff(self.ingredients) # empty buff if no lotus
 		for ingredient in ingredients:
+			if ingredient.effectBuff == null: continue
 			lotusBuff = lotusBuff.combine(ingredient.effectBuff)
 		return lotusBuff
 

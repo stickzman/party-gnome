@@ -70,14 +70,14 @@ static func combineAll(buffs: Array[Buff]) -> Buff:
 	
 	
 # Special lotus buff, depends on other ingredients
-static func getLotusBuff(ingredients: Array[Ingredient]) -> Buff:
+static func getLotusBuff(otherIngredients: Array[Ingredient]) -> Buff:
 	var lotusBuff = Buff.new()
-	# If not holding a lotus, or only holding 1 ingredient, return an empty buff
-	if ingredients.size() < 2 or !ingredients.any(func(i): return i.name == "Lotus"): return lotusBuff
+	# If not holding a lotus, return an empty buff
+	if !otherIngredients.any(func(i): return i.name == "Lotus"): return lotusBuff
 
-	var hasLemon = ingredients.any(func(i): return i.name == "Lemon")
-	var hasCherry = ingredients.any(func(i): return i.name == "Cherry")
-	var hasGrapes = ingredients.any(func(i): return i.name == "Grapes")
+	var hasLemon = otherIngredients.any(func(i): return i.name == "Lemon")
+	var hasCherry = otherIngredients.any(func(i): return i.name == "Cherry")
+	var hasGrapes = otherIngredients.any(func(i): return i.name == "Grapes")
 	
 	lotusBuff.doesRevive = hasLemon
 	lotusBuff.hasImmunity = hasGrapes

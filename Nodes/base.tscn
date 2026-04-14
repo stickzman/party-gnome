@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b5v8y0ieguooy" path="res://Assets/Placeholder Art/Untitled-5.png" id="7_tfdc1"]
 [ext_resource type="Script" uid="uid://d0gp1ffqjhdtb" path="res://Nodes/Hand.gd" id="9_snegy"]
 [ext_resource type="PackedScene" uid="uid://bpt3l2x6lnuup" path="res://Nodes/Card.tscn" id="9_uq6bc"]
+[ext_resource type="Resource" uid="uid://kg3mlvi36hl5" path="res://Resources/Brewing/Ingredients/Lotus.tres" id="10_ld7gu"]
 [ext_resource type="Resource" uid="uid://ciabhi263i8f8" path="res://Resources/Brewing/Ingredients/Cherry.tres" id="10_uq6bc"]
 [ext_resource type="Resource" uid="uid://u8a4klf0qki1" path="res://Resources/Brewing/Ingredients/Lemon.tres" id="12_x78u4"]
 [ext_resource type="Script" uid="uid://dv24spjrf0k1g" path="res://Nodes/PotionBelt.gd" id="13_bltit"]
@@ -51,6 +52,10 @@ script = ExtResource("9_snegy")
 [node name="Cherry" parent="Hand" unique_id=821912137 groups=["card"] instance=ExtResource("9_uq6bc")]
 position = Vector2(167, 748)
 ingredient = ExtResource("10_uq6bc")
+
+[node name="Lotus" parent="Hand" unique_id=1198704080 groups=["card"] instance=ExtResource("9_uq6bc")]
+position = Vector2(1022, 756)
+ingredient = ExtResource("10_ld7gu")
 
 [node name="Lemon" parent="Hand" unique_id=248561130 groups=["card"] instance=ExtResource("9_uq6bc")]
 position = Vector2(346, 747)
