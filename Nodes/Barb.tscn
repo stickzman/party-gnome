@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://ddc20escti61c"]
+
+[ext_resource type="PackedScene" uid="uid://bkj6dlv0sxo3g" path="res://Nodes/Hero.tscn" id="1_crfsw"]
+[ext_resource type="Texture2D" uid="uid://dx4648ai31dx1" path="res://Assets/Placeholder Art/Untitled-2.png" id="2_fcx0q"]
+
+[node name="Barb" unique_id=272325375 instance=ExtResource("1_crfsw")]
+maxHealth = 20
+
+[node name="Sprite" parent="." index="0" unique_id=1525626712]
+texture = ExtResource("2_fcx0q")

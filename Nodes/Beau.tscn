@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://xdo6bbfgp2mf"]
+
+[ext_resource type="PackedScene" uid="uid://bkj6dlv0sxo3g" path="res://Nodes/Hero.tscn" id="1_ou0pe"]
+[ext_resource type="Texture2D" uid="uid://dgg5i7dc4d0oq" path="res://Assets/Placeholder Art/Untitled-4.png" id="2_0qmcw"]
+
+[node name="Beau" unique_id=272325375 instance=ExtResource("1_ou0pe")]
+
+[node name="Sprite" parent="." index="0" unique_id=1525626712]
+texture = ExtResource("2_0qmcw")
