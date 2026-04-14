@@ -27,11 +27,6 @@ func _ready() -> void:
 	# Connect hand to potion belt (what a sentence)
 	$Hand.connect("potion_created", $PotionBelt.add_potion)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
-
-
 #First phase of the game when the characters and boss moves are randomly chosen
 func random_moves_phase():
 	if state != GAME_STATE.CHOOSING_ACTIONS: return
