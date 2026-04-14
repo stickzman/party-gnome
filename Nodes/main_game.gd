@@ -79,6 +79,7 @@ func _on_end_turn_button_down() -> void:
 			barb.hit(boss.attack)
 		FinalBoss.TARGETS.MARGE:
 			marge.hit(boss.attack)
+	boss.endOfTurnReset()
 		
 	state = GAME_STATE.CHOOSING_ACTIONS
 	random_moves_phase() # return to random actions phase
@@ -88,6 +89,7 @@ func onHeroClicked(hero: Hero):
 	hero.drinkPotion(currentPotion)
 	potionBelt.use_potion(currentPotion)
 
-func onBossClicked(boss: FinalBoss):
+func onBossClicked(finalBoss: FinalBoss):
 	if currentPotion == null: return
-	print("why are you trying to give the boss a potion?")
+	finalBoss.drinkPotion(currentPotion)
+	potionBelt.use_potion(currentPotion)
