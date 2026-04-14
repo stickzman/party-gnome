@@ -68,7 +68,6 @@ func add_potion(potion: Potion):
 		$SecondPotionSlot/SecondPotionLabel.text = EMPTY_LABEL
 		$SecondPotionSlot/UseSecondPotionButton.disabled = true
 
-# TODO: to be called by game manager or whatever manage selecting characters
 func use_potion(potion: Potion):
 	print(potion)
 	if firstPotion == potion:
@@ -81,6 +80,7 @@ func use_potion(potion: Potion):
 		$SecondPotionSlot/SecondPotionLabel.text = EMPTY_LABEL
 		$SecondPotionSlot/UseSecondPotionButton.disabled = true
 		$SecondPotionSlot/UsingPotionLabel.text = ""
+	removePotion(potion)
 
 
 func toggleSelectPotion(slot: Slot) -> Selection:
