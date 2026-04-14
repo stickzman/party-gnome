@@ -85,3 +85,4 @@ func _on_end_turn_button_down() -> void:
 func onHeroClicked(hero: Hero):
 	if currentPotion == null: return
 	hero.drinkPotion(currentPotion)
+	potionBelt.use_potion(currentPotion)
