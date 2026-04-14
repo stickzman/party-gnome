@@ -87,7 +87,7 @@ func isDead():
 func drinkPotion(potion: Potion):
 	var effectBuff = potion.effectBuff
 	attack += effectBuff.attackValueModifier
-	attack *= effectBuff.attackMultModifier
+	attack *= effectBuff.attackMultModifier + 1
 	defense += effectBuff.defenseValueModifier
 	healing += effectBuff.healthValueModifier
 
