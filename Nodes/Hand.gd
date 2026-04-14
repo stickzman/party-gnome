@@ -2,7 +2,7 @@ extends Node2D
 
 signal potion_created
 
-@export var potentialPotion: Potion = Potion.new()
+var potentialPotion: Potion = Potion.new()
 var selectedCards: Array[Node2D] = []
 
 # Called when the node enters the scene tree for the first time.

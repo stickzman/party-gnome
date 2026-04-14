@@ -29,10 +29,6 @@ card="Scenes that are cards"
 
 theme/default_font_multichannel_signed_distance_field=true
 
-[global_group]
-
-card="Scenes that are cards"
-
 [physics]
 
 3d/physics_engine="Jolt Physics"

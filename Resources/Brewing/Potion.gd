@@ -1,9 +1,8 @@
 class_name Potion
-extends Resource
 
 # Invariant: ingredients.length >= 2
-@export var ingredients: Array[Ingredient] = []
-@export var sprite: Texture2D
+var ingredients: Array[Ingredient] = []
+var sprite: Texture2D
 
 # Reduces all component buffs down to one large buff.
 var effectBuff: Buff:

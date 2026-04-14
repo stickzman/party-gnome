@@ -18,7 +18,7 @@ var attack := 0
 var defense := 0
 
 enum INTENT {ATTACK, DEFEND, HEAL}
-var intent: INTENT
+var intent
 
 func _ready():
 	nameLabel.text = name
@@ -36,13 +36,22 @@ func chooseIntent():
 	match intent:
 		INTENT.ATTACK:
 			attack = baseAttack
-			intentLabel.text = "ATTACK %s" % attack
 		INTENT.DEFEND:
 			defense = baseDefense
-			intentLabel.text = "DEFEND %s" % defense
 		INTENT.HEAL:
 			healing = baseHeal
+	updateIntentDisplay()
+
+func updateIntentDisplay():
+	match intent:
+		INTENT.ATTACK:
+			intentLabel.text = "ATTACK %s" % attack
+		INTENT.DEFEND:
+			intentLabel.text = "DEFEND %s" % defense
+		INTENT.HEAL:
 			intentLabel.text = "HEAL %s" % healing
+		_:
+			intentLabel.text = ""
 
 # Reduce incoming damage by defense, then return the remaining damage
 func defend(damage: int):
@@ -65,7 +74,21 @@ func updateHealth(amount: int):
 	healthLabel.text = "%s / %s" % [health, maxHealth]
 	if (health <= 0):
 		sprite.flip_v = true
-		intentLabel.text = ""
+		intent = null
+	else:
+		sprite.flip_v = false
 
 func isDead():
 	return health <= 0
+
+func drinkPotion(potion: Potion):
+	var effectBuff = potion.effectBuff
+	attack += effectBuff.attackValueModifier
+	attack *= effectBuff.attackMultModifier
+	defense += effectBuff.defenseValueModifier
+	healing += effectBuff.healthValueModifier
+
+	if effectBuff.hasImmunity: defense = 9999 # INF only works as a floating-point number, so I'm harding coding this max DEF
+	if effectBuff.doesRevive && isDead(): updateHealth(1) # Heal 1hp to revive
+	
+	updateIntentDisplay()

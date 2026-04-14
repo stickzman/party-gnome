@@ -5,10 +5,10 @@ enum Slot {FIRST, SECOND, NONE}
 enum Selection {TOGGLED, SELECTED, NOTHING}
 
 # At most two potions can be present
-@export var firstPotion: Potion = null
-@export var secondPotion: Potion = null
+var firstPotion: Potion = null
+var secondPotion: Potion = null
 
-@export var selectedPotion = Slot.NONE
+var selectedPotion = Slot.NONE
 
 func toggleSelectPotion(slot: Slot) -> Selection:
 	if (slot == Slot.FIRST and !firstPotion) or (slot == Slot.SECOND and !secondPotion):
