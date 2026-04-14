@@ -33,6 +33,7 @@ func _ready() -> void:
 	barb.connect("hero_clicked", onHeroClicked)
 	beau.connect("hero_clicked", onHeroClicked)
 	marge.connect("hero_clicked", onHeroClicked)
+	boss.connect("clicked", onBossClicked)
 	potionBelt.connect("using_potion", func(potion): currentPotion = potion)
 	potionBelt.connect("stop_using_potion", func(_potion): currentPotion = null)
 
@@ -86,3 +87,7 @@ func onHeroClicked(hero: Hero):
 	if currentPotion == null: return
 	hero.drinkPotion(currentPotion)
 	potionBelt.use_potion(currentPotion)
+
+func onBossClicked(boss: FinalBoss):
+	if currentPotion == null: return
+	print("why are you trying to give the boss a potion?")
