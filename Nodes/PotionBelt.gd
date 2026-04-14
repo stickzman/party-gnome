@@ -69,7 +69,6 @@ func add_potion(potion: Potion):
 		$SecondPotionSlot/UseSecondPotionButton.disabled = true
 
 func use_potion(potion: Potion):
-	print(potion)
 	if firstPotion == potion:
 		$FirstPotionSlot/FirstPotionLabel.text = EMPTY_LABEL
 		$FirstPotionSlot/UseFirstPotionButton.disabled = true
