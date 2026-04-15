@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://wr8kjfu5qqsd" path="res://Nodes/hero.gd" id="1_1no4y"]
 [ext_resource type="Texture2D" uid="uid://cyo3n5xmkc4od" path="res://Assets/Placeholder Art/Untitled-3.png" id="1_6xbbc"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1no4y"]
+size = Vector2(362, 568)
+
 [node name="Hero" type="Node2D" unique_id=272325375]
 script = ExtResource("1_1no4y")
 
@@ -66,3 +69,11 @@ theme_override_font_sizes/font_size = 38
 text = "Hero Name"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ClickTarget" type="Area2D" parent="." unique_id=1368350069]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickTarget" unique_id=1676857627]
+position = Vector2(0, -65)
+shape = SubResource("RectangleShape2D_1no4y")
+
+[connection signal="input_event" from="ClickTarget" to="." method="_on_click_target_input_event"]

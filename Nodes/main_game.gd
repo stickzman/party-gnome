@@ -4,6 +4,7 @@ extends Node2D
 @onready var barb := $Barb
 @onready var beau := $Beau
 @onready var boss := $FinalBoss
+@onready var potionBelt := $PotionBelt
 
 # This array should match the order of TARGETS in final_boss.gd
 # Yes, this is very hacky but it makes grabbing the target ref easier and it's a game jam,
@@ -20,17 +21,21 @@ enum GAME_STATE {
 }
 var state: GAME_STATE = GAME_STATE.IDLE
 
+var currentPotion = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	state = GAME_STATE.CHOOSING_ACTIONS
 	random_moves_phase()
 	# Connect hand to potion belt (what a sentence)
-	$Hand.connect("potion_created", $PotionBelt.add_potion)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
-
+	$Hand.connect("potion_created", potionBelt.add_potion)
+	# Connect heroes to PotionBelt
+	barb.connect("hero_clicked", onHeroClicked)
+	beau.connect("hero_clicked", onHeroClicked)
+	marge.connect("hero_clicked", onHeroClicked)
+	boss.connect("clicked", onBossClicked)
+	potionBelt.connect("using_potion", func(potion): currentPotion = potion)
+	potionBelt.connect("stop_using_potion", func(_potion): currentPotion = null)
 
 #First phase of the game when the characters and boss moves are randomly chosen
 func random_moves_phase():
@@ -45,9 +50,9 @@ func choose_move_char():
 	beau.chooseIntent()
 	marge.chooseIntent()
 
-# keep choosing targets until you get a non-dead one
 func choose_boss_target():
 	var targetIndex = boss.chooseIntent()
+	# keep choosing targets until you get a non-dead one
 	while targetIndex < heroes.size() and heroes[targetIndex].isDead():
 		targetIndex = boss.chooseIntent()
 
@@ -74,6 +79,17 @@ func _on_end_turn_button_down() -> void:
 			barb.hit(boss.attack)
 		FinalBoss.TARGETS.MARGE:
 			marge.hit(boss.attack)
+	boss.endOfTurnReset()
 		
 	state = GAME_STATE.CHOOSING_ACTIONS
 	random_moves_phase() # return to random actions phase
+
+func onHeroClicked(hero: Hero):
+	if currentPotion == null: return
+	hero.drinkPotion(currentPotion)
+	potionBelt.use_potion(currentPotion)
+
+func onBossClicked(finalBoss: FinalBoss):
+	if currentPotion == null: return
+	finalBoss.drinkPotion(currentPotion)
+	potionBelt.use_potion(currentPotion)

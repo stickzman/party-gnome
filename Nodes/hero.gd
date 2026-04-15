@@ -1,6 +1,8 @@
 class_name Hero
 extends Node2D
 
+signal hero_clicked
+
 @onready var sprite := $Sprite
 @onready var healthBar := $HealthBar
 @onready var healthLabel := $HealthBar/HealthText
@@ -16,9 +18,10 @@ extends Node2D
 var healing := 0
 var attack := 0
 var defense := 0
+const maxDefense = 9999
 
 enum INTENT {ATTACK, DEFEND, HEAL}
-var intent: INTENT
+var intent
 
 func _ready():
 	nameLabel.text = name
@@ -36,13 +39,23 @@ func chooseIntent():
 	match intent:
 		INTENT.ATTACK:
 			attack = baseAttack
-			intentLabel.text = "ATTACK %s" % attack
 		INTENT.DEFEND:
 			defense = baseDefense
-			intentLabel.text = "DEFEND %s" % defense
 		INTENT.HEAL:
 			healing = baseHeal
+	updateIntentDisplay()
+
+func updateIntentDisplay():
+	match intent:
+		INTENT.ATTACK:
+			intentLabel.text = "ATTACK %s" % attack
+		INTENT.DEFEND:
+			intentLabel.text = "DEFEND %s" % defense
+		INTENT.HEAL:
 			intentLabel.text = "HEAL %s" % healing
+		_:
+			intentLabel.text = ""
+	if defense == maxDefense: intentLabel.text += "\nIMMUNE from damage this turn!"
 
 # Reduce incoming damage by defense, then return the remaining damage
 func defend(damage: int):
@@ -65,7 +78,30 @@ func updateHealth(amount: int):
 	healthLabel.text = "%s / %s" % [health, maxHealth]
 	if (health <= 0):
 		sprite.flip_v = true
-		intentLabel.text = ""
+		intent = null
+		updateIntentDisplay()
+	else:
+		sprite.flip_v = false
 
 func isDead():
 	return health <= 0
+
+func drinkPotion(potion: Potion):
+	var effectBuff = potion.effectBuff
+	attack += effectBuff.attackValueModifier
+	attack *= effectBuff.attackMultModifier + 1
+	defense += effectBuff.defenseValueModifier
+	if effectBuff.hasImmunity: defense = maxDefense
+
+	if effectBuff.doesRevive && isDead():
+		# Heal to revive
+		updateHealth(effectBuff.healthValueModifier)
+	else:
+		healing += effectBuff.healthValueModifier
+
+	updateIntentDisplay()
+
+
+func _on_click_target_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
+	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
+		hero_clicked.emit(self )
