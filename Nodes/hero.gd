@@ -1,7 +1,7 @@
 class_name Hero
 extends Node2D
 
-signal hero_clicked
+signal clicked
 
 @onready var sprite := $Sprite
 @onready var highlightSprite := $Highlight
@@ -9,6 +9,7 @@ signal hero_clicked
 @onready var healthLabel := $HealthBar/HealthText
 @onready var intentLabel := $IntentText
 @onready var nameLabel := $NameText
+@onready var clickTarget := $ClickTarget
 
 @export var maxHealth := 15
 @export var baseAttack := 5
@@ -32,6 +33,11 @@ enum INTENT {ATTACK, DEFEND, HEAL}
 var intent
 
 func _ready():
+	clickTarget.connect("input_event", func(_viewport: Node, event: InputEvent, _shape_idx: int):
+		if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT: clicked.emit(self )
+	)
+	clickTarget.connect("mouse_entered", func(): if hoverable: highlightSprite.visible = true)
+	clickTarget.connect("mouse_exited", func(): if hoverable: highlightSprite.visible = false)
 	highlightSprite.texture = sprite.texture
 	nameLabel.text = name
 	healthBar.max_value = maxHealth
@@ -109,15 +115,3 @@ func drinkPotion(potion: Potion):
 		healing += effectBuff.healthValueModifier
 
 	updateIntentDisplay()
-
-
-func _on_click_target_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
-		hero_clicked.emit(self )
-
-func onMouseEnter() -> void:
-	if hoverable: highlightSprite.visible = true
-
-
-func onMouseExit() -> void:
-	if hoverable: highlightSprite.visible = false

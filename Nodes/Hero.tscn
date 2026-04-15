@@ -86,7 +86,3 @@ texture = ExtResource("1_6xbbc")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ClickTarget" unique_id=1676857627]
 position = Vector2(0, 25.5)
 shape = SubResource("RectangleShape2D_1no4y")
-
-[connection signal="input_event" from="ClickTarget" to="." method="_on_click_target_input_event"]
-[connection signal="mouse_entered" from="ClickTarget" to="." method="onMouseEnter"]
-[connection signal="mouse_exited" from="ClickTarget" to="." method="onMouseExit"]

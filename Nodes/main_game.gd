@@ -30,7 +30,7 @@ func _ready() -> void:
 	# Connect hand to potion belt (what a sentence)
 	$Hand.connect("potion_created", potionBelt.add_potion)
 	# Connect heroes to PotionBelt
-	for hero in heroes: hero.connect("hero_clicked", onCharacterClicked)
+	for hero in heroes: hero.connect("clicked", onCharacterClicked)
 	boss.connect("clicked", onCharacterClicked)
 	potionBelt.connect("using_potion", func(potion):
 		currentPotion = potion
