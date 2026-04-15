@@ -4,6 +4,7 @@ extends Node2D
 signal hero_clicked
 
 @onready var sprite := $Sprite
+@onready var highlightSprite := $Highlight
 @onready var healthBar := $HealthBar
 @onready var healthLabel := $HealthBar/HealthText
 @onready var intentLabel := $IntentText
@@ -13,6 +14,8 @@ signal hero_clicked
 @export var baseAttack := 5
 @export var baseDefense := 2
 @export var baseHeal := 1
+
+var hoverable := false
 
 @onready var health := maxHealth
 var healing := 0
@@ -24,6 +27,7 @@ enum INTENT {ATTACK, DEFEND, HEAL}
 var intent
 
 func _ready():
+	highlightSprite.texture = sprite.texture
 	nameLabel.text = name
 	healthBar.max_value = maxHealth
 	healthBar.value = health
@@ -105,3 +109,10 @@ func drinkPotion(potion: Potion):
 func _on_click_target_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
 		hero_clicked.emit(self )
+
+func onMouseEnter() -> void:
+	if hoverable: highlightSprite.visible = true
+
+
+func onMouseExit() -> void:
+	if hoverable: highlightSprite.visible = false
