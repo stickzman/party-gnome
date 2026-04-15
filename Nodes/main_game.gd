@@ -9,7 +9,7 @@ extends Node2D
 # This array should match the order of TARGETS in final_boss.gd
 # Yes, this is very hacky but it makes grabbing the target ref easier and it's a game jam,
 # so really what do you want from me?
-@onready var heroes = [barb, marge, beau]
+@onready var heroes: Array[Hero] = [barb, marge, beau]
 
 #Game States
 enum GAME_STATE {
@@ -30,12 +30,16 @@ func _ready() -> void:
 	# Connect hand to potion belt (what a sentence)
 	$Hand.connect("potion_created", potionBelt.add_potion)
 	# Connect heroes to PotionBelt
-	barb.connect("hero_clicked", onHeroClicked)
-	beau.connect("hero_clicked", onHeroClicked)
-	marge.connect("hero_clicked", onHeroClicked)
-	boss.connect("clicked", onBossClicked)
-	potionBelt.connect("using_potion", func(potion): currentPotion = potion)
-	potionBelt.connect("stop_using_potion", func(_potion): currentPotion = null)
+	for hero in heroes: hero.connect("hero_clicked", onCharacterClicked)
+	boss.connect("clicked", onCharacterClicked)
+	potionBelt.connect("using_potion", func(potion):
+		currentPotion = potion
+		for hero in heroes: hero.hoverable = true
+	)
+	potionBelt.connect("stop_using_potion", func(_potion):
+		currentPotion = null
+		for hero in heroes: hero.hoverable = false
+	)
 
 #First phase of the game when the characters and boss moves are randomly chosen
 func random_moves_phase():
@@ -84,12 +88,8 @@ func _on_end_turn_button_down() -> void:
 	state = GAME_STATE.CHOOSING_ACTIONS
 	random_moves_phase() # return to random actions phase
 
-func onHeroClicked(hero: Hero):
+func onCharacterClicked(character):
 	if currentPotion == null: return
-	hero.drinkPotion(currentPotion)
+	character.drinkPotion(currentPotion)
 	potionBelt.use_potion(currentPotion)
-
-func onBossClicked(finalBoss: FinalBoss):
-	if currentPotion == null: return
-	finalBoss.drinkPotion(currentPotion)
-	potionBelt.use_potion(currentPotion)
+	for hero in heroes: hero.hoverable = false

@@ -15,7 +15,12 @@ signal hero_clicked
 @export var baseDefense := 2
 @export var baseHeal := 1
 
-var hoverable := false
+var _hoverable := false
+var hoverable: bool:
+	get: return _hoverable
+	set(value):
+		highlightSprite.visible = false
+		_hoverable = value
 
 @onready var health := maxHealth
 var healing := 0
