@@ -35,10 +35,12 @@ func _ready() -> void:
 	potionBelt.connect("using_potion", func(potion):
 		currentPotion = potion
 		for hero in heroes: hero.hoverable = true
+		boss.hoverable = true
 	)
 	potionBelt.connect("stop_using_potion", func(_potion):
 		currentPotion = null
 		for hero in heroes: hero.hoverable = false
+		boss.hoverable = false
 	)
 
 #First phase of the game when the characters and boss moves are randomly chosen
@@ -93,3 +95,4 @@ func onCharacterClicked(character):
 	character.drinkPotion(currentPotion)
 	potionBelt.use_potion(currentPotion)
 	for hero in heroes: hero.hoverable = false
+	boss.hoverable = false

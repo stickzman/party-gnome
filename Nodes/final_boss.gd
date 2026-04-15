@@ -4,10 +4,18 @@ extends Node2D
 signal clicked
 
 @onready var sprite := $Sprite2D
+@onready var highlightSprite := $Highlight
 @onready var healthBar := $HealthBar
 @onready var healthText := $HealthBar/HealthText
 @onready var intentText := $IntentText
 @onready var clickTarget := $Area2D
+
+var _hoverable := false
+var hoverable: bool:
+	get: return _hoverable
+	set(value):
+		highlightSprite.visible = false
+		_hoverable = value
 
 #Boss Base Stats
 @export var maxAttack := 25
@@ -26,6 +34,8 @@ func _ready() -> void:
 	clickTarget.connect("input_event", func(_viewport: Node, event: InputEvent, _shape_idx: int):
 		if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT: clicked.emit(self )
 	)
+	clickTarget.connect("mouse_entered", func(): if hoverable: highlightSprite.visible = true)
+	clickTarget.connect("mouse_exited", func(): if hoverable: highlightSprite.visible = false)
 	healthBar.max_value = maxHealth
 	healthBar.value = health
 	healthText.text = "%s / %s" % [health, maxHealth]
