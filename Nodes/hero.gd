@@ -93,10 +93,12 @@ func updateHealth(amount: int):
 	healthLabel.text = "%s / %s" % [health, maxHealth]
 	if (health <= 0):
 		sprite.flip_v = true
+		highlightSprite.flip_v = true
 		intent = null
 		updateIntentDisplay()
 	else:
 		sprite.flip_v = false
+		highlightSprite.flip_v = false
 
 func isDead():
 	return health <= 0
