@@ -98,7 +98,7 @@ func _on_end_turn_button_down() -> void:
 	random_moves_phase() # return to random actions phase
 
 func onCharacterClicked(character):
-	if currentPotion == null: return
+	if currentPotion == null || character.drankPotion: return
 	character.drinkPotion(currentPotion)
 	potionBelt.use_potion(currentPotion)
 	currentPotion = null

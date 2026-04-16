@@ -10,9 +10,11 @@ signal clicked
 @onready var intentText := $IntentText
 @onready var clickTarget := $Area2D
 
+var drankPotion := false
+
 var _hoverable := false
 var hoverable: bool:
-	get: return _hoverable
+	get: return _hoverable && !drankPotion
 	set(value):
 		highlightSprite.visible = false
 		_hoverable = value
@@ -69,6 +71,8 @@ func updateHealth(amount: int):
 		intentText.text = ""
 
 func drinkPotion(potion: Potion):
+	if drankPotion: return
+	drankPotion = true
 	var effectBuff = potion.effectBuff
 	attack += effectBuff.attackValueModifier
 	attack *= effectBuff.attackMultModifier + 1
@@ -80,6 +84,7 @@ func drinkPotion(potion: Potion):
 
 func endOfTurn():
 	updateHealth(healing)
+	drankPotion = false
 	healing = 0
 	defense = 0
 	updateIntentDisplay()
