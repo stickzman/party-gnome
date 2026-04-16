@@ -2,12 +2,13 @@
 
 [ext_resource type="Script" uid="uid://dec162hbq8px1" path="res://Nodes/main_game.gd" id="1_t3qsy"]
 [ext_resource type="PackedScene" uid="uid://bdhdjlh0h4tyw" path="res://Nodes/final_boss.tscn" id="2_thafn"]
-[ext_resource type="PackedScene" uid="uid://cqaftxslxtwk8" path="res://Nodes/Marge.tscn" id="3_t3qsy"]
-[ext_resource type="PackedScene" uid="uid://ddc20escti61c" path="res://Nodes/Barb.tscn" id="4_t3qsy"]
-[ext_resource type="PackedScene" uid="uid://xdo6bbfgp2mf" path="res://Nodes/Beau.tscn" id="5_tfdc1"]
+[ext_resource type="PackedScene" path="res://Nodes/Marge.tscn" id="3_t3qsy"]
+[ext_resource type="PackedScene" path="res://Nodes/Barb.tscn" id="4_t3qsy"]
+[ext_resource type="PackedScene" path="res://Nodes/Beau.tscn" id="5_tfdc1"]
 [ext_resource type="Texture2D" uid="uid://b5v8y0ieguooy" path="res://Assets/Placeholder Art/Untitled-5.png" id="7_tfdc1"]
 [ext_resource type="PackedScene" uid="uid://c2xw2ml6s3rc5" path="res://Nodes/Hand.tscn" id="8_snegy"]
 [ext_resource type="PackedScene" uid="uid://bkotb0e3fqbta" path="res://Nodes/DrawPile.tscn" id="9_rr44f"]
+[ext_resource type="PackedScene" uid="uid://c8nt1hal7rant" path="res://Nodes/DiscardPile.tscn" id="10_uq6bc"]
 [ext_resource type="Script" uid="uid://dv24spjrf0k1g" path="res://Nodes/PotionBelt.gd" id="13_bltit"]
 
 [node name="GameManager" type="Node2D" unique_id=716799636]
@@ -113,5 +114,11 @@ text = "PotionBelt"
 
 [node name="DrawPile" parent="." unique_id=1445647496 instance=ExtResource("9_rr44f")]
 position = Vector2(119, 666)
+
+[node name="DiscardPile" parent="." unique_id=251435741 instance=ExtResource("10_uq6bc")]
+offset_left = 1121.0
+offset_top = 576.0
+offset_right = 1121.0
+offset_bottom = 576.0
 
 [connection signal="button_down" from="End Turn" to="." method="_on_end_turn_button_down"]

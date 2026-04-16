@@ -25,8 +25,23 @@ func _ready() -> void:
 	pass # Replace with function body.
 	
 func draw_card() -> Ingredient:
-	# TODO: lose game if empty, emit signal?
 	return pile.pop_back()
+
+# Draws at most n cards, or pile.size()
+func try_draw_n(n: int) -> Array[Ingredient]:
+	var drawn: Array[Ingredient] = []
+	for _i in range(0, n):
+		if pile.is_empty():
+			return drawn
+		drawn.append(pile.pop_back())
+	return drawn
+	
+func is_empty():
+	return pile.is_empty()
+
+func shuffle_in(ingredients: Array[Ingredient]):
+	pile = ingredients
+	pile.shuffle()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

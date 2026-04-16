@@ -29,16 +29,13 @@ func grab(ingredients: Array[Ingredient]):
 
 func update_potential_potion():
 	self.potentialPotion.ingredients = []
-	print("updated potential potion")
 	for c in selectedCards:
-		print("appending ingredients", self.potentialPotion.ingredients)
 		self.potentialPotion.ingredients.append(c.ingredient)
 		
 	var message = self.potentialPotion.effectBuff.get_message()
 	%PotentialPotionStatusLabel.text = message
 	
 func update_can_make_button():
-	print("ingreds of pot pot size: ", potentialPotion.ingredients.size())
 	$MakePotionButton.disabled = !potentialPotion.canMake()
 
 func on_ingredient_selection_changed(is_selected: bool, card: Card):
@@ -53,6 +50,16 @@ func on_ingredient_selection_changed(is_selected: bool, card: Card):
 	
 	update_potential_potion();
 	update_can_make_button();
+	
+func discard_remaining() -> Array[Ingredient]:
+	var ingredients_to_discard: Array[Ingredient] = []
+	for card in cardSlots.get_children():
+		assert(card is Card, "only cards in the card slots")
+		ingredients_to_discard.append(card.ingredient)
+		card.queue_free()
+
+	selectedCards = []
+	return ingredients_to_discard
 
 func on_potion_make_button_pressed():
 	assert(potentialPotion.canMake(), ">=2 ingredients in potion")
