@@ -113,9 +113,11 @@ func addPotion(potion: Potion) -> Slot:
 	
 func removePotion(potion: Potion) -> void:
 	if firstPotion == potion:
+		if selectedPotion == Slot.FIRST: selectedPotion = Slot.NONE
 		self.firstPotion = null
 		return
 		
 	if secondPotion == potion:
+		if selectedPotion == Slot.SECOND: selectedPotion = Slot.NONE
 		self.secondPotion = null
 		return
