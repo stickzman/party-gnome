@@ -88,8 +88,11 @@ func defend(damage: int):
 	return remainingDamage
 
 func hit(damage: int):
-	var remainingDamage = defend(damage)
-	updateHealth(-remainingDamage)
+	if intent == Hero.INTENT.DEFEND || defense == maxDefense:
+		var remainingDamage = defend(damage)
+		updateHealth(-remainingDamage)
+	else:
+		updateHealth(-damage)
 
 func heal():
 	updateHealth(healing)
