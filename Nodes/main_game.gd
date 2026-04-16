@@ -32,18 +32,12 @@ func _ready() -> void:
 	state = GAME_STATE.CHOOSING_ACTIONS
 	random_moves_phase()
 	# Connect hand to potion belt (what a sentence)
-	hand.connect("potion_created", $PotionBelt.add_potion)
+	hand.connect("potion_created", potionBelt.add_potion)
 	var starting_hand: Array[Ingredient] = []
 	for _i in range(0, HAND_SIZE):
 		starting_hand.append(drawPile.draw_card())
 		
 	hand.grab(starting_hand)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
-
-	$Hand.connect("potion_created", potionBelt.add_potion)
 	# Connect heroes to PotionBelt
 	for hero in heroes: hero.connect("clicked", onCharacterClicked)
 	boss.connect("clicked", onCharacterClicked)

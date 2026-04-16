@@ -29,5 +29,5 @@ func draw_card() -> Ingredient:
 	return pile.pop_back()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	count_label.text = str(pile.size())
