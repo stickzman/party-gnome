@@ -20,7 +20,7 @@ var hoverable: bool:
 		_hoverable = value
 
 #Boss Base Stats
-@export var maxAttack := 15
+@export var maxAttack := 25
 var attack := 0
 var defense := 0 # Only applicable if the player uses a DEF potion on the FinalBoss
 const maxDefense := 9999
