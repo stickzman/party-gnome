@@ -135,6 +135,7 @@ func onCharacterClicked(character):
 	if currentPotion == null || character.drankPotion: return
 	character.drinkPotion(currentPotion)
 	potionBelt.use_potion(currentPotion)
+	discardPile.release_ingredients_in_potion(currentPotion)
 	currentPotion = null
 	for hero in heroes: hero.hoverable = false
 	boss.hoverable = false
