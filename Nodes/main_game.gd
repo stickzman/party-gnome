@@ -75,32 +75,30 @@ func choose_boss_target():
 func _on_end_turn_button_down() -> void:
 	state = GAME_STATE.CONCLUDING_ACTION
 	
-	# Resolve hero actions
-	for hero in [barb, beau, marge]:
+	# Resolve hero attacks
+	for hero in heroes:
 		if (hero.isDead()): continue
-		match hero.intent:
-			Hero.INTENT.ATTACK:
-				boss.hit(hero.attack)
-			Hero.INTENT.HEAL:
-				hero.heal()
+		if hero.intent == Hero.INTENT.ATTACK: boss.hit(hero.attack)
 	
 	# Resolve Boss Attacks
 	match boss.target:
 		FinalBoss.TARGETS.ALL:
-			for hero in [barb, beau, marge]: hero.hit(boss.attack)
+			for hero in heroes: hero.hit(boss.attack)
 		FinalBoss.TARGETS.BEAU:
 			beau.hit(boss.attack)
 		FinalBoss.TARGETS.BARB:
 			barb.hit(boss.attack)
 		FinalBoss.TARGETS.MARGE:
 			marge.hit(boss.attack)
-	boss.endOfTurnReset()
+
+	for hero in heroes: hero.endOfTurn()
+	boss.endOfTurn()
 		
 	state = GAME_STATE.CHOOSING_ACTIONS
 	random_moves_phase() # return to random actions phase
 
 func onCharacterClicked(character):
-	if currentPotion == null: return
+	if currentPotion == null || character.drankPotion: return
 	character.drinkPotion(currentPotion)
 	potionBelt.use_potion(currentPotion)
 	currentPotion = null
