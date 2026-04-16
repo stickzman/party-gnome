@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://dec162hbq8px1" path="res://Nodes/main_game.gd" id="1_t3qsy"]
 [ext_resource type="PackedScene" uid="uid://bdhdjlh0h4tyw" path="res://Nodes/final_boss.tscn" id="2_thafn"]
-[ext_resource type="PackedScene" path="res://Nodes/Marge.tscn" id="3_t3qsy"]
-[ext_resource type="PackedScene" path="res://Nodes/Barb.tscn" id="4_t3qsy"]
-[ext_resource type="PackedScene" path="res://Nodes/Beau.tscn" id="5_tfdc1"]
+[ext_resource type="PackedScene" uid="uid://cqaftxslxtwk8" path="res://Nodes/Marge.tscn" id="3_t3qsy"]
+[ext_resource type="PackedScene" uid="uid://ddc20escti61c" path="res://Nodes/Barb.tscn" id="4_t3qsy"]
+[ext_resource type="PackedScene" uid="uid://xdo6bbfgp2mf" path="res://Nodes/Beau.tscn" id="5_tfdc1"]
 [ext_resource type="Texture2D" uid="uid://b5v8y0ieguooy" path="res://Assets/Placeholder Art/Untitled-5.png" id="7_tfdc1"]
 [ext_resource type="PackedScene" uid="uid://c2xw2ml6s3rc5" path="res://Nodes/Hand.tscn" id="8_snegy"]
 [ext_resource type="PackedScene" uid="uid://bkotb0e3fqbta" path="res://Nodes/DrawPile.tscn" id="9_rr44f"]
@@ -77,14 +77,14 @@ offset_bottom = 160.0
 [node name="FirstPotionSlot" type="Node2D" parent="PotionBelt" unique_id=1659747488]
 
 [node name="UseFirstPotionButton" type="Button" parent="PotionBelt/FirstPotionSlot" unique_id=1929054361]
-offset_left = 978.0
-offset_top = 40.0
-offset_right = 1028.0
-offset_bottom = 71.0
+offset_left = 979.4684
+offset_top = 39.727703
+offset_right = 1054.6136
+offset_bottom = 92.184906
 text = "USE 1"
 
 [node name="FirstPotionLabel" type="Label" parent="PotionBelt/FirstPotionSlot" unique_id=1649688805]
-offset_left = 1044.0
+offset_left = 1066.1471
 offset_top = 39.0
 offset_right = 1370.0
 offset_bottom = 97.0
@@ -92,23 +92,23 @@ text = "(empty)"
 autowrap_mode = 2
 
 [node name="UsingPotionLabel" type="Label" parent="PotionBelt/FirstPotionSlot" unique_id=1013332750]
-offset_left = 982.0
-offset_top = 70.0
-offset_right = 1026.0
-offset_bottom = 93.0
+offset_left = 1069.7587
+offset_top = 65.731285
+offset_right = 1113.7587
+offset_bottom = 88.731285
 text = "Using"
 
 [node name="SecondPotionSlot" type="Node2D" parent="PotionBelt" unique_id=1442670714]
 
 [node name="UseSecondPotionButton" type="Button" parent="PotionBelt/SecondPotionSlot" unique_id=1517127905]
-offset_left = 980.0
-offset_top = 104.0
-offset_right = 1031.0
-offset_bottom = 135.0
+offset_left = 978.7461
+offset_top = 101.847374
+offset_right = 1054.7805
+offset_bottom = 152.42426
 text = "USE 2"
 
 [node name="SecondPotionLabel" type="Label" parent="PotionBelt/SecondPotionSlot" unique_id=948035254]
-offset_left = 1044.0
+offset_left = 1065.4248
 offset_top = 102.0
 offset_right = 1375.0
 offset_bottom = 156.0
@@ -116,10 +116,10 @@ text = "(empty)"
 autowrap_mode = 2
 
 [node name="UsingPotionLabel" type="Label" parent="PotionBelt/SecondPotionSlot" unique_id=1586739675]
-offset_left = 985.0
-offset_top = 136.0
-offset_right = 1029.0
-offset_bottom = 159.0
+offset_left = 1069.7587
+offset_top = 129.29561
+offset_right = 1113.7587
+offset_bottom = 152.29562
 text = "Using"
 
 [node name="PotionBeltLabel" type="Label" parent="PotionBelt" unique_id=1878696711]
