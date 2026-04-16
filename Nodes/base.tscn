@@ -20,7 +20,7 @@
 script = ExtResource("1_t3qsy")
 
 [node name="Marge" parent="." unique_id=272325375 instance=ExtResource("3_t3qsy")]
-position = Vector2(705.00006, 291)
+position = Vector2(716, 284)
 scale = Vector2(0.3296739, 0.3296739)
 
 [node name="Barb" parent="." unique_id=975474634 instance=ExtResource("4_t3qsy")]
@@ -28,7 +28,7 @@ position = Vector2(583.99994, 442)
 scale = Vector2(0.31860963, 0.31860963)
 
 [node name="Beau" parent="." unique_id=173704423 instance=ExtResource("5_tfdc1")]
-position = Vector2(806, 167)
+position = Vector2(847, 161)
 scale = Vector2(0.3139727, 0.3139727)
 
 [node name="JambaSprite" type="Sprite2D" parent="." unique_id=103974361]
