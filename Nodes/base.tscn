@@ -2,19 +2,13 @@
 
 [ext_resource type="Script" uid="uid://dec162hbq8px1" path="res://Nodes/main_game.gd" id="1_t3qsy"]
 [ext_resource type="PackedScene" uid="uid://bdhdjlh0h4tyw" path="res://Nodes/final_boss.tscn" id="2_thafn"]
-[ext_resource type="PackedScene" uid="uid://cqaftxslxtwk8" path="res://Nodes/Marge.tscn" id="3_t3qsy"]
-[ext_resource type="PackedScene" uid="uid://ddc20escti61c" path="res://Nodes/Barb.tscn" id="4_t3qsy"]
-[ext_resource type="PackedScene" uid="uid://xdo6bbfgp2mf" path="res://Nodes/Beau.tscn" id="5_tfdc1"]
+[ext_resource type="PackedScene" path="res://Nodes/Marge.tscn" id="3_t3qsy"]
+[ext_resource type="PackedScene" path="res://Nodes/Barb.tscn" id="4_t3qsy"]
+[ext_resource type="PackedScene" path="res://Nodes/Beau.tscn" id="5_tfdc1"]
 [ext_resource type="Texture2D" uid="uid://b5v8y0ieguooy" path="res://Assets/Placeholder Art/Untitled-5.png" id="7_tfdc1"]
-[ext_resource type="Script" uid="uid://d0gp1ffqjhdtb" path="res://Nodes/Hand.gd" id="9_snegy"]
-[ext_resource type="PackedScene" uid="uid://bpt3l2x6lnuup" path="res://Nodes/Card.tscn" id="9_uq6bc"]
-[ext_resource type="Resource" uid="uid://kg3mlvi36hl5" path="res://Resources/Brewing/Ingredients/Lotus.tres" id="10_ld7gu"]
-[ext_resource type="Resource" uid="uid://ciabhi263i8f8" path="res://Resources/Brewing/Ingredients/Cherry.tres" id="10_uq6bc"]
-[ext_resource type="Resource" uid="uid://u8a4klf0qki1" path="res://Resources/Brewing/Ingredients/Lemon.tres" id="12_x78u4"]
+[ext_resource type="PackedScene" uid="uid://c2xw2ml6s3rc5" path="res://Nodes/Hand.tscn" id="8_snegy"]
+[ext_resource type="PackedScene" uid="uid://bkotb0e3fqbta" path="res://Nodes/DrawPile.tscn" id="9_rr44f"]
 [ext_resource type="Script" uid="uid://dv24spjrf0k1g" path="res://Nodes/PotionBelt.gd" id="13_bltit"]
-[ext_resource type="Resource" uid="uid://dul2jb63sl3r4" path="res://Resources/Brewing/Ingredients/Grape.tres" id="13_ld7gu"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x78u4"]
 
 [node name="GameManager" type="Node2D" unique_id=716799636]
 script = ExtResource("1_t3qsy")
@@ -46,56 +40,11 @@ offset_right = 949.0
 offset_bottom = 529.0
 text = "END TURN"
 
-[node name="Hand" type="Node2D" parent="." unique_id=323327224]
-script = ExtResource("9_snegy")
-
-[node name="Cherry" parent="Hand" unique_id=821912137 groups=["card"] instance=ExtResource("9_uq6bc")]
-position = Vector2(167, 748)
-ingredient = ExtResource("10_uq6bc")
-
-[node name="Lotus" parent="Hand" unique_id=1198704080 groups=["card"] instance=ExtResource("9_uq6bc")]
-position = Vector2(1022, 756)
-ingredient = ExtResource("10_ld7gu")
-
-[node name="Lemon" parent="Hand" unique_id=248561130 groups=["card"] instance=ExtResource("9_uq6bc")]
-position = Vector2(346, 747)
-ingredient = ExtResource("12_x78u4")
-
-[node name="Grapes" parent="Hand" unique_id=235233576 groups=["card"] instance=ExtResource("9_uq6bc")]
-position = Vector2(519, 748)
-ingredient = ExtResource("13_ld7gu")
-
-[node name="Lemon2" parent="Hand" unique_id=791628344 groups=["card"] instance=ExtResource("9_uq6bc")]
-position = Vector2(688, 749)
-ingredient = ExtResource("12_x78u4")
-
-[node name="Cherry2" parent="Hand" unique_id=1370093353 groups=["card"] instance=ExtResource("9_uq6bc")]
-position = Vector2(853, 748)
-ingredient = ExtResource("10_uq6bc")
-
-[node name="MakePotionButton" type="Button" parent="Hand" unique_id=1452456190]
-unique_name_in_owner = true
-offset_left = 773.0
-offset_top = 591.0
-offset_right = 926.871
-offset_bottom = 636.0
-text = "Make potion"
-
-[node name="PotentialPotionStatus" type="Panel" parent="Hand" unique_id=1413297582]
-offset_left = 96.0
-offset_top = 593.0
-offset_right = 752.0
-offset_bottom = 633.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_x78u4")
-
-[node name="PotentialPotionStatusLabel" type="Label" parent="Hand/PotentialPotionStatus" unique_id=558881717]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 13.0
-offset_top = 9.0
-offset_right = 457.0
-offset_bottom = 32.0
-text = "No effect. Select some ingredients to show its effect here."
+[node name="Hand" parent="." unique_id=1910097115 instance=ExtResource("8_snegy")]
+offset_left = 669.0
+offset_top = 716.0
+offset_right = 669.0
+offset_bottom = 716.0
 
 [node name="PotionBelt" type="Node2D" parent="." unique_id=1179922605]
 script = ExtResource("13_bltit")
@@ -160,5 +109,8 @@ offset_top = 8.0
 offset_right = 1059.0
 offset_bottom = 31.0
 text = "PotionBelt"
+
+[node name="DrawPile" parent="." unique_id=1445647496 instance=ExtResource("9_rr44f")]
+position = Vector2(119, 666)
 
 [connection signal="button_down" from="End Turn" to="." method="_on_end_turn_button_down"]

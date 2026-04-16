@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://bkotb0e3fqbta"]
+
+[ext_resource type="Script" uid="uid://p52xppf3wdar" path="res://Nodes/DrawPile.gd" id="1_la2n4"]
+[ext_resource type="Texture2D" uid="uid://c6txi4duun85x" path="res://Assets/Placeholder Art/jamba_card_back.jpg" id="2_wchmy"]
+
+[node name="DrawPile" type="Node2D" unique_id=1445647496]
+script = ExtResource("1_la2n4")
+
+[node name="DrawPileSprite" type="Sprite2D" parent="." unique_id=1349484095]
+position = Vector2(-3, 2.0000005)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_wchmy")
+
+[node name="DrawPileLabel" type="Label" parent="." unique_id=354366160]
+offset_left = -39.0
+offset_top = -32.0
+offset_right = 35.0
+offset_bottom = -9.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Draw Pile"
+
+[node name="CardCountLabel" type="Label" parent="." unique_id=1695029233]
+offset_left = -21.0
+offset_top = -12.0
+offset_right = 19.0
+offset_bottom = 11.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "10"
+horizontal_alignment = 1

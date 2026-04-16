@@ -5,6 +5,8 @@ extends Node2D
 @onready var beau := $Beau
 @onready var boss := $FinalBoss
 @onready var potionBelt := $PotionBelt
+@onready var hand = $Hand
+@onready var drawPile = $DrawPile
 
 # This array should match the order of TARGETS in final_boss.gd
 # Yes, this is very hacky but it makes grabbing the target ref easier and it's a game jam,
@@ -21,6 +23,8 @@ enum GAME_STATE {
 }
 var state: GAME_STATE = GAME_STATE.IDLE
 
+const HAND_SIZE = 5
+
 var currentPotion = null
 
 # Called when the node enters the scene tree for the first time.
@@ -28,6 +32,17 @@ func _ready() -> void:
 	state = GAME_STATE.CHOOSING_ACTIONS
 	random_moves_phase()
 	# Connect hand to potion belt (what a sentence)
+	hand.connect("potion_created", $PotionBelt.add_potion)
+	var starting_hand: Array[Ingredient] = []
+	for _i in range(0, HAND_SIZE):
+		starting_hand.append(drawPile.draw_card())
+		
+	hand.grab(starting_hand)
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
+	pass
+
 	$Hand.connect("potion_created", potionBelt.add_potion)
 	# Connect heroes to PotionBelt
 	for hero in heroes: hero.connect("clicked", onCharacterClicked)

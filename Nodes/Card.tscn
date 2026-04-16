@@ -3,30 +3,38 @@
 [ext_resource type="Script" uid="uid://6d7iksvutlr" path="res://Nodes/Card.gd" id="1_alvoo"]
 [ext_resource type="Texture2D" uid="uid://d0nbl1t3wyn0t" path="res://Assets/Placeholder Art/cherry.jpg" id="1_xam11"]
 
-[node name="Card" type="Node2D" unique_id=821912137]
+[node name="Card" type="Control" unique_id=1475444221]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_alvoo")
 
-[node name="IngredientSprite" type="Sprite2D" parent="." unique_id=560710662]
+[node name="IngredientSprite" type="TextureRect" parent="." unique_id=1503151040]
+layout_mode = 0
+offset_right = 943.0
+offset_bottom = 1195.0
 scale = Vector2(0.15, 0.15)
 texture = ExtResource("1_xam11")
 
 [node name="SelectionLabel" type="Label" parent="." unique_id=2067772301]
-offset_left = -43.0
-offset_top = -82.0
-offset_right = 44.0
-offset_bottom = -59.0
+layout_mode = 0
+offset_left = 27.0
+offset_top = 8.0
+offset_right = 114.0
+offset_bottom = 31.0
 text = "Unselected"
 
 [node name="EffectLabel" type="Label" parent="." unique_id=1979630534]
-offset_left = -65.0
-offset_top = 32.0
-offset_right = -20.0
-offset_bottom = 55.0
+layout_mode = 0
+offset_left = 5.0
+offset_top = 122.0
+offset_right = 50.0
+offset_bottom = 145.0
 text = "Effect"
 
 [node name="InteractionButton" type="Button" parent="." unique_id=539265562]
-offset_left = 7.0
-offset_top = 57.0
-offset_right = 66.0
-offset_bottom = 88.0
+layout_mode = 0
+offset_left = 77.0
+offset_top = 147.0
+offset_right = 136.0
+offset_bottom = 178.0
 text = "Toggle"
