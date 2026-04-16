@@ -33,10 +33,9 @@ func _ready() -> void:
 	state = GAME_STATE.CHOOSING_ACTIONS
 	random_moves_phase()
 	# Connect hand to potion belt (what a sentence)
-	hand.connect("potion_created", $PotionBelt.add_potion)
+	hand.connect("potion_created", potionBelt.add_potion)
 	draw_hand()
 
-	$Hand.connect("potion_created", potionBelt.add_potion)
 	# Connect heroes to PotionBelt
 	for hero in heroes: hero.connect("clicked", onCharacterClicked)
 	boss.connect("clicked", onCharacterClicked)
