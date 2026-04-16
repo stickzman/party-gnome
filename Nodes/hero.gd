@@ -16,13 +16,6 @@ signal clicked
 @export var baseDefense := 2
 @export var baseHeal := 1
 
-var _hoverable := false
-var hoverable: bool:
-	get: return _hoverable
-	set(value):
-		highlightSprite.visible = false
-		_hoverable = value
-
 @onready var health := maxHealth
 var healing := 0
 var attack := 0
@@ -31,6 +24,15 @@ const maxDefense = 9999
 
 enum INTENT {ATTACK, DEFEND, HEAL}
 var intent
+
+var drankPotion := false
+
+var _hoverable := false
+var hoverable: bool:
+	get: return _hoverable && !drankPotion
+	set(value):
+		highlightSprite.visible = false
+		_hoverable = value
 
 func _ready():
 	clickTarget.connect("input_event", func(_viewport: Node, event: InputEvent, _shape_idx: int):
@@ -44,13 +46,19 @@ func _ready():
 	healthBar.value = health
 	healthLabel.text = "%s / %s" % [health, maxHealth]
 
-func chooseIntent():
-	if isDead(): return
-	intent = randi() % INTENT.size() as INTENT
-	# Reset all stats for this turn, use base scores if using ability, set to 0 otherwise
+func endOfTurn():
+	# Heal at end of turn, after receiving dmg
+	if !isDead() && intent == INTENT.HEAL: heal()
+	# Reset statuses
 	healing = 0
 	defense = 0
 	attack = 0
+	drankPotion = false
+
+func chooseIntent():
+	if isDead(): return
+	intent = randi() % INTENT.size() as INTENT
+	# Reset stat to base scores if using ability
 	match intent:
 		INTENT.ATTACK:
 			attack = baseAttack
@@ -104,6 +112,8 @@ func isDead():
 	return health <= 0
 
 func drinkPotion(potion: Potion):
+	if drankPotion: return
+	drankPotion = true
 	var effectBuff = potion.effectBuff
 	attack += effectBuff.attackValueModifier
 	attack *= effectBuff.attackMultModifier + 1

@@ -78,7 +78,7 @@ func drinkPotion(potion: Potion):
 	if effectBuff.hasImmunity: defense = maxDefense
 	updateIntentDisplay()
 
-func endOfTurnReset():
+func endOfTurn():
 	updateHealth(healing)
 	healing = 0
 	defense = 0
