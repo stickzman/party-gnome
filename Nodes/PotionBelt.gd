@@ -48,10 +48,17 @@ func on_use_second_potion():
 	if selection == PotionBelt.Selection.SELECTED:
 		$SecondPotionSlot/UsingPotionLabel.text = USING_LABEL
 		emit_signal("using_potion", secondPotion)
-	
+
+func can_add_potion() -> bool:
+	return !firstPotion or !secondPotion
+
 # TODO: bug where adding a second potion overrides the first with the latest
 func add_potion(potion: Potion):
+	if !can_add_potion():
+		# TODO: disable the make potion button somehow
+		return
 	addPotion(potion);
+	# TODO: handle full?
 	assert(firstPotion == potion or secondPotion == potion)
 	assert(!(firstPotion == potion and secondPotion == potion))
 	if firstPotion:

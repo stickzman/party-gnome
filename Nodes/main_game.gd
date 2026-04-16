@@ -5,8 +5,9 @@ extends Node2D
 @onready var beau := $Beau
 @onready var boss := $FinalBoss
 @onready var potionBelt := $PotionBelt
-@onready var hand = $Hand
-@onready var drawPile = $DrawPile
+@onready var hand: Hand = $Hand
+@onready var drawPile: DrawPile = $DrawPile
+@onready var discardPile: DiscardPile = $DiscardPile
 
 # This array should match the order of TARGETS in final_boss.gd
 # Yes, this is very hacky but it makes grabbing the target ref easier and it's a game jam,
@@ -32,12 +33,10 @@ func _ready() -> void:
 	state = GAME_STATE.CHOOSING_ACTIONS
 	random_moves_phase()
 	# Connect hand to potion belt (what a sentence)
-	hand.connect("potion_created", potionBelt.add_potion)
-	var starting_hand: Array[Ingredient] = []
-	for _i in range(0, HAND_SIZE):
-		starting_hand.append(drawPile.draw_card())
-		
-	hand.grab(starting_hand)
+	hand.connect("potion_created", $PotionBelt.add_potion)
+	draw_hand()
+
+	$Hand.connect("potion_created", potionBelt.add_potion)
 	# Connect heroes to PotionBelt
 	for hero in heroes: hero.connect("clicked", onCharacterClicked)
 	boss.connect("clicked", onCharacterClicked)
@@ -73,6 +72,7 @@ func choose_boss_target():
 
 #resolves the turn by attacking boss, setting move state to false, then having boss attack and setting his attack state to false
 func _on_end_turn_button_down() -> void:
+	discard_rest_of_hand()
 	state = GAME_STATE.CONCLUDING_ACTION
 	
 	# Resolve hero attacks
@@ -96,6 +96,40 @@ func _on_end_turn_button_down() -> void:
 		
 	state = GAME_STATE.CHOOSING_ACTIONS
 	random_moves_phase() # return to random actions phase
+	draw_hand()
+	
+func discard_rest_of_hand():
+	# OOP actually works wow
+	discardPile.add(hand.discard_remaining())
+	
+	
+# Draw cards, shuffle the discard and move to draw pile if necessary
+# Then keep drawing until HAND_SIZE.
+func draw_hand():
+	print("drawing hand")
+	var ingredients_hand: Array[Ingredient] = drawPile.try_draw_n(HAND_SIZE)
+	
+	print("hand size", ingredients_hand.size())
+	if (ingredients_hand.size() < HAND_SIZE):
+		print("triggering xfer")
+		assert(drawPile.pile.size() == 0, "draw pile should be empty to trigger discard xfer")
+		var out = discardPile.transfer_out()
+		if out.is_empty():
+			# TODO: end game
+			get_tree().quit() # temp just crash, not great
+			
+		drawPile.shuffle_in(out)
+		print("draw pile shuffled in")
+		
+		# True up to the HAND size after shuffling in the discard
+		var remaining = min(HAND_SIZE - ingredients_hand.size(), drawPile.pile.size())
+		print("need to draw this many more", HAND_SIZE)
+		for _i in range(0, remaining):
+			print("drawing true up card from pile")
+			ingredients_hand.append(drawPile.draw_card())
+	
+	assert(ingredients_hand.size() <= HAND_SIZE, "should be at most hand size")
+	hand.grab(ingredients_hand)
 
 func onCharacterClicked(character):
 	if currentPotion == null || character.drankPotion: return
