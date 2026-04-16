@@ -8,6 +8,7 @@ extends Node2D
 @onready var hand: Hand = $Hand
 @onready var drawPile: DrawPile = $DrawPile
 @onready var discardPile: DiscardPile = $DiscardPile
+@onready var endTurnBtn := $"End Turn"
 
 # This array should match the order of TARGETS in final_boss.gd
 # Yes, this is very hacky but it makes grabbing the target ref easier and it's a game jam,
@@ -92,7 +93,17 @@ func _on_end_turn_button_down() -> void:
 
 	for hero in heroes: hero.endOfTurn()
 	boss.endOfTurn()
-		
+
+	if boss.isDead():
+		print("LFG!!!!")
+		endTurnBtn.disabled = true
+		return
+	if heroes.all(func(hero): return hero.isDead()):
+		print("Oof, I'm sorry man. Jamba, you should probably just get outta here.")
+		endTurnBtn.disabled = true
+		return
+
+
 	state = GAME_STATE.CHOOSING_ACTIONS
 	random_moves_phase() # return to random actions phase
 	draw_hand()
