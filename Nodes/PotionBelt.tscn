@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://dcitfj0mabf3p"]
+
+[ext_resource type="Script" uid="uid://dv24spjrf0k1g" path="res://Nodes/PotionBelt.gd" id="1_62bve"]
+
+[node name="PotionBelt" type="Node2D" unique_id=1902995949]
+script = ExtResource("1_62bve")
+
+[node name="Panel" type="Panel" parent="." unique_id=589424405]
+offset_right = 417.0
+offset_bottom = 156.0
+
+[node name="FirstPotionSlot" type="Node2D" parent="." unique_id=1548029703]
+
+[node name="UseFirstPotionButton" type="Button" parent="FirstPotionSlot" unique_id=1788672199]
+offset_left = 12.0
+offset_top = 36.0
+offset_right = 63.0
+offset_bottom = 67.0
+text = "USE 1"
+
+[node name="FirstPotionLabel" type="Label" parent="FirstPotionSlot" unique_id=1483377779]
+offset_left = 78.0
+offset_top = 35.0
+offset_right = 404.0
+offset_bottom = 93.0
+text = "(empty)"
+autowrap_mode = 2
+
+[node name="UsingPotionLabel" type="Label" parent="FirstPotionSlot" unique_id=1699237607]
+offset_left = 16.0
+offset_top = 66.0
+offset_right = 60.0
+offset_bottom = 89.0
+text = "Using"
+
+[node name="SecondPotionSlot" type="Node2D" parent="." unique_id=1316193740]
+
+[node name="UseSecondPotionButton" type="Button" parent="SecondPotionSlot" unique_id=1313987365]
+offset_left = 14.0
+offset_top = 100.0
+offset_right = 65.0
+offset_bottom = 131.0
+text = "USE 2"
+
+[node name="SecondPotionLabel" type="Label" parent="SecondPotionSlot" unique_id=438561695]
+offset_left = 78.0
+offset_top = 98.0
+offset_right = 409.0
+offset_bottom = 152.0
+text = "(empty)"
+autowrap_mode = 2
+
+[node name="UsingPotionLabel" type="Label" parent="SecondPotionSlot" unique_id=1668097145]
+offset_left = 19.0
+offset_top = 132.0
+offset_right = 63.0
+offset_bottom = 155.0
+text = "Using"
+
+[node name="PotionBeltLabel" type="Label" parent="." unique_id=1739277084]
+offset_left = 12.0
+offset_top = 4.0
+offset_right = 93.0
+offset_bottom = 27.0
+text = "PotionBelt"

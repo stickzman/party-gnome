@@ -1,6 +1,7 @@
-extends Node2D
+class_name Card
+extends Control
 
-signal selection_changed
+signal selection_changed(is_selected: bool, _self: Card)
 
 @export var ingredient: Ingredient
 @export var is_selected = false
@@ -10,9 +11,10 @@ func _ready() -> void:
 	$InteractionButton.pressed.connect(pressed)
 	$EffectLabel.text = ingredient.effectDescription
 	$IngredientSprite.texture = ingredient.sprite
+	self.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 
 func pressed():
-	self.is_selected = !self.is_selected
+	self.is_selected = ! self.is_selected
 	if is_selected:
 		$SelectionLabel.text = "Selected"
 		$SelectionLabel.add_theme_color_override("font_color", Color.GREEN)
@@ -20,4 +22,4 @@ func pressed():
 		$SelectionLabel.text = "Unselected"
 		$SelectionLabel.add_theme_color_override("font_color", Color.WHITE)
 		
-	emit_signal("selection_changed", self.is_selected, self)
+	selection_changed.emit(self.is_selected, self )
