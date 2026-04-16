@@ -95,11 +95,11 @@ func _on_end_turn_button_down() -> void:
 	boss.endOfTurn()
 
 	if boss.isDead():
-		print("LFG!!!!")
+		%WinMessage.visible = true
 		endTurnBtn.disabled = true
 		return
 	if heroes.all(func(hero): return hero.isDead()):
-		print("Oof, I'm sorry man. Jamba, you should probably just get outta here.")
+		%LoseMessage.visible = true
 		endTurnBtn.disabled = true
 		return
 

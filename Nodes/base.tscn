@@ -49,6 +49,38 @@ text = "Jamba (you)"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="WinMessage" type="Label" parent="JambaSprite" unique_id=1431001995]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -352.23987
+offset_top = -215.32037
+offset_right = 667.76013
+offset_bottom = 86.38797
+grow_horizontal = 0
+rotation = -0.30715433
+theme_override_font_sizes/font_size = 107
+text = "LFG!!!!
+You did it! You won!"
+
+[node name="LoseMessage" type="Label" parent="JambaSprite" unique_id=1573138910]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -232.15646
+offset_top = -178.86906
+offset_right = 592.8435
+offset_bottom = -22.119064
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 36
+text = "Oof, I'm sorry man.
+Jamba, you should probably just get outta here.
+(you lose)"
+
 [node name="FinalBoss" parent="." unique_id=1236169219 instance=ExtResource("2_thafn")]
 position = Vector2(246, 317)
 
