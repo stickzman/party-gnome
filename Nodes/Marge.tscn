@@ -3,3 +3,4 @@
 [ext_resource type="PackedScene" uid="uid://bkj6dlv0sxo3g" path="res://Nodes/Hero.tscn" id="1_6ayuw"]
 
 [node name="Marge" unique_id=272325375 instance=ExtResource("1_6ayuw")]
+baseHeal = 5

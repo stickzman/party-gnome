@@ -32,6 +32,23 @@ position = Vector2(872, 378)
 scale = Vector2(0.46296296, 0.47777778)
 texture = ExtResource("7_tfdc1")
 
+[node name="Label" type="Label" parent="JambaSprite" unique_id=1697074189]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -317.0
+offset_top = -256.82147
+offset_right = -88.0
+offset_bottom = -200.98814
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Jamba (you)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="FinalBoss" parent="." unique_id=1236169219 instance=ExtResource("2_thafn")]
 position = Vector2(246, 317)
 
