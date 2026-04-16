@@ -5,6 +5,7 @@
 
 [node name="Barb" unique_id=272325375 instance=ExtResource("1_crfsw")]
 maxHealth = 20
+baseDefense = 4
 
 [node name="Sprite" parent="." index="0" unique_id=1525626712]
 texture = ExtResource("2_fcx0q")
