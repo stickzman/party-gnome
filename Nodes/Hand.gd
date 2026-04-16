@@ -5,7 +5,8 @@ signal potion_created
 
 @export var potentialPotion: Potion = Potion.new()
 var selectedCards: Array[Card] = []
-@onready var handGrid = $CardSpot
+
+@onready var cardSlots = $CardSlots
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -14,54 +15,56 @@ func _ready() -> void:
 	# Gather ingredients from cards
 	var cards = get_tree().get_nodes_in_group("card")
 	for c in cards:
-		c.selection_changed(on_ingredient_selection_changed)
+		c.connect("selection_changed", on_ingredient_selection_changed)
 
 const CARD_SCENE = preload("res://Nodes/Card.tscn")
 
-func draw_ingredients(ingredients: Array[Ingredient]):
-	assert(ingredients.size() <= 5, "hand size max is 5")
-	assert(ingredients.size() >= 0, "must draw something")
+func grab(ingredients: Array[Ingredient]):
 	for ingredient in ingredients:
-		var newCard = CARD_SCENE.instantiate()
-		newCard.ingredient = ingredient
-		handGrid.add_child(newCard)
-		newCard.selection_changed.connect(on_ingredient_selection_changed)
+		var card: Card = CARD_SCENE.instantiate();
+		card.ingredient = ingredient
+		card.selection_changed.connect(on_ingredient_selection_changed)
+		cardSlots.add_child(card)
+	
 
 func update_potential_potion():
 	self.potentialPotion.ingredients = []
+	print("updated potential potion")
 	for c in selectedCards:
+		print("appending ingredients", self.potentialPotion.ingredients)
 		self.potentialPotion.ingredients.append(c.ingredient)
 		
 	var message = self.potentialPotion.effectBuff.get_message()
 	%PotentialPotionStatusLabel.text = message
 	
 func update_can_make_button():
-	print("update can make button")
+	print("ingreds of pot pot size: ", potentialPotion.ingredients.size())
 	$MakePotionButton.disabled = !potentialPotion.canMake()
 
 func on_ingredient_selection_changed(is_selected: bool, card: Card):
-	print("on ingredient selction changed. Is selected:", is_selected)
 	if is_selected:
 		selectedCards.append(card)
+		assert(!selectedCards.is_empty(), "we have to add to the selected cards")
 	else:
 		var i = selectedCards.find(card)
 		assert(i != -1, "We should keep track of all cards")
 		selectedCards.remove_at(i)
+		
 	
 	update_potential_potion();
 	update_can_make_button();
 
 func on_potion_make_button_pressed():
-	print("make potion pressed")
 	assert(potentialPotion.canMake(), ">=2 ingredients in potion")
 	potion_created.emit(potentialPotion)
 	potentialPotion = Potion.new() # reset potion
 	
 	# Remove ingredient cards as used
 	for card in selectedCards:
-		card.queue_free() # avoid orphaned nodes
+		card.queue_free()
 	
 	self.selectedCards = [];
 	
 	# Reset potential potion
 	update_potential_potion();
+	update_can_make_button();

@@ -4,11 +4,14 @@ extends Node2D
 @onready var barb := $Barb
 @onready var beau := $Beau
 @onready var boss := $FinalBoss
+@onready var potionBelt := $PotionBelt
+@onready var hand = $Hand
+@onready var drawPile = $DrawPile
 
 # This array should match the order of TARGETS in final_boss.gd
 # Yes, this is very hacky but it makes grabbing the target ref easier and it's a game jam,
 # so really what do you want from me?
-@onready var heroes = [barb, marge, beau]
+@onready var heroes: Array[Hero] = [barb, marge, beau]
 
 #Game States
 enum GAME_STATE {
@@ -19,10 +22,10 @@ enum GAME_STATE {
 	CONCLUDING_ACTION, # State that prevents interactions with cards as it conclude the final math
 }
 var state: GAME_STATE = GAME_STATE.IDLE
-@onready var hand: Hand = $Hand
-@onready var draw_pile: DrawPile = $DrawPile
 
 const HAND_SIZE = 5
+
+var currentPotion = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -32,14 +35,28 @@ func _ready() -> void:
 	hand.connect("potion_created", $PotionBelt.add_potion)
 	var starting_hand: Array[Ingredient] = []
 	for _i in range(0, HAND_SIZE):
-		starting_hand.append(draw_pile.draw_card())
+		starting_hand.append(drawPile.draw_card())
 		
-	hand.draw_ingredients(starting_hand)
+	hand.grab(starting_hand)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
 
+	$Hand.connect("potion_created", potionBelt.add_potion)
+	# Connect heroes to PotionBelt
+	for hero in heroes: hero.connect("clicked", onCharacterClicked)
+	boss.connect("clicked", onCharacterClicked)
+	potionBelt.connect("using_potion", func(potion):
+		currentPotion = potion
+		for hero in heroes: hero.hoverable = true
+		boss.hoverable = true
+	)
+	potionBelt.connect("stop_using_potion", func(_potion):
+		currentPotion = null
+		for hero in heroes: hero.hoverable = false
+		boss.hoverable = false
+	)
 
 #First phase of the game when the characters and boss moves are randomly chosen
 func random_moves_phase():
@@ -54,9 +71,9 @@ func choose_move_char():
 	beau.chooseIntent()
 	marge.chooseIntent()
 
-# keep choosing targets until you get a non-dead one
 func choose_boss_target():
 	var targetIndex = boss.chooseIntent()
+	# keep choosing targets until you get a non-dead one
 	while targetIndex < heroes.size() and heroes[targetIndex].isDead():
 		targetIndex = boss.chooseIntent()
 
@@ -83,6 +100,15 @@ func _on_end_turn_button_down() -> void:
 			barb.hit(boss.attack)
 		FinalBoss.TARGETS.MARGE:
 			marge.hit(boss.attack)
+	boss.endOfTurnReset()
 		
 	state = GAME_STATE.CHOOSING_ACTIONS
 	random_moves_phase() # return to random actions phase
+
+func onCharacterClicked(character):
+	if currentPotion == null: return
+	character.drinkPotion(currentPotion)
+	potionBelt.use_potion(currentPotion)
+	currentPotion = null
+	for hero in heroes: hero.hoverable = false
+	boss.hoverable = false

@@ -1,6 +1,14 @@
+class_name PotionBelt
 extends Node2D
 
-var potionBelt: PotionBelt = PotionBelt.new()
+enum Slot {FIRST, SECOND, NONE}
+enum Selection {TOGGLED, SELECTED, NOTHING}
+
+# At most two potions can be present
+var firstPotion: Potion = null
+var secondPotion: Potion = null
+
+var selectedPotion = Slot.NONE
 
 const EMPTY_LABEL = "(empty)"
 const USING_LABEL = "Using"
@@ -16,57 +24,91 @@ func _ready() -> void:
 	$SecondPotionSlot/UsingPotionLabel.text = ""
 
 func on_use_first_potion():
-	var selection = potionBelt.toggleSelectPotion(PotionBelt.Slot.FIRST)
+	var selection = toggleSelectPotion(PotionBelt.Slot.FIRST)
 	if selection == PotionBelt.Selection.NOTHING:
 		# nothing to select
 		return ;
 	if selection == PotionBelt.Selection.TOGGLED:
 		$FirstPotionSlot/UsingPotionLabel.text = ""
-		emit_signal("stop_using_potion", potionBelt.firstPotion)
+		emit_signal("stop_using_potion", firstPotion)
 		return
 	if selection == PotionBelt.Selection.SELECTED:
 		$FirstPotionSlot/UsingPotionLabel.text = USING_LABEL
-		emit_signal("using_potion", potionBelt.firstPotion)
+		emit_signal("using_potion", firstPotion)
 
 func on_use_second_potion():
-	var selection = potionBelt.toggleSelectPotion(PotionBelt.Slot.SECOND)
+	var selection = toggleSelectPotion(PotionBelt.Slot.SECOND)
 	if selection == PotionBelt.Selection.NOTHING:
 		# nothing to select
 		return ;
 	if selection == PotionBelt.Selection.TOGGLED:
 		$SecondPotionSlot/UsingPotionLabel.text = ""
-		emit_signal("stop_using_potion", potionBelt.secondPotion)
+		emit_signal("stop_using_potion", secondPotion)
 		return
 	if selection == PotionBelt.Selection.SELECTED:
 		$SecondPotionSlot/UsingPotionLabel.text = USING_LABEL
-		emit_signal("using_potion", potionBelt.secondPotion)
+		emit_signal("using_potion", secondPotion)
 	
 # TODO: bug where adding a second potion overrides the first with the latest
 func add_potion(potion: Potion):
-	potionBelt.addPotion(potion);
-	assert(potionBelt.firstPotion == potion or potionBelt.secondPotion == potion)
-	assert(!(potionBelt.firstPotion == potion and potionBelt.secondPotion == potion))
-	if potionBelt.firstPotion:
-		$FirstPotionSlot/FirstPotionLabel.text = potionBelt.firstPotion.effectBuff.get_message();
+	addPotion(potion);
+	assert(firstPotion == potion or secondPotion == potion)
+	assert(!(firstPotion == potion and secondPotion == potion))
+	if firstPotion:
+		$FirstPotionSlot/FirstPotionLabel.text = firstPotion.effectBuff.get_message();
 		$FirstPotionSlot/UseFirstPotionButton.disabled = false
 	else:
 		$FirstPotionSlot/FirstPotionLabel.text = EMPTY_LABEL
 		$FirstPotionSlot/UseFirstPotionButton.disabled = true
 	
-	if potionBelt.secondPotion:
-		$SecondPotionSlot/SecondPotionLabel.text = potionBelt.secondPotion.effectBuff.get_message();
+	if secondPotion:
+		$SecondPotionSlot/SecondPotionLabel.text = secondPotion.effectBuff.get_message();
 		$SecondPotionSlot/UseSecondPotionButton.disabled = false
 	else:
 		$SecondPotionSlot/SecondPotionLabel.text = EMPTY_LABEL
 		$SecondPotionSlot/UseSecondPotionButton.disabled = true
 
-# TODO: to be called by game manager or whatever manage selecting characters
 func use_potion(potion: Potion):
-	if potionBelt.firstPotion == potion:
+	if firstPotion == potion:
 		$FirstPotionSlot/FirstPotionLabel.text = EMPTY_LABEL
 		$FirstPotionSlot/UseFirstPotionButton.disabled = true
+		$FirstPotionSlot/UsingPotionLabel.text = ""
 	else:
 		# it better be the second potion or I'm gonna scream
-		assert(potionBelt.secondPotion == potion)
+		assert(secondPotion == potion)
 		$SecondPotionSlot/SecondPotionLabel.text = EMPTY_LABEL
 		$SecondPotionSlot/UseSecondPotionButton.disabled = true
+		$SecondPotionSlot/UsingPotionLabel.text = ""
+	removePotion(potion)
+
+
+func toggleSelectPotion(slot: Slot) -> Selection:
+	if (slot == Slot.FIRST and !firstPotion) or (slot == Slot.SECOND and !secondPotion):
+		# Can't select what's not there
+		return Selection.NOTHING
+	if slot == selectedPotion:
+		selectedPotion = Slot.NONE
+		return Selection.TOGGLED;
+	selectedPotion = slot
+	return Selection.SELECTED # Only one selected at a time
+	
+
+func addPotion(potion: Potion) -> Slot:
+	if self.firstPotion == null:
+		self.firstPotion = potion
+		return Slot.FIRST
+		
+	if self.secondPotion == null:
+		self.secondPotion = potion
+		return Slot.SECOND
+		
+	return Slot.NONE
+	
+func removePotion(potion: Potion) -> void:
+	if firstPotion == potion:
+		self.firstPotion = null
+		return
+		
+	if secondPotion == potion:
+		self.secondPotion = null
+		return

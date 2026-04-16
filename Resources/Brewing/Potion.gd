@@ -8,8 +8,9 @@ extends Resource
 # Reduces all component buffs down to one large buff.
 var effectBuff: Buff:
 	get:
-		var lotusBuff = Buff.lotusBuff(self.ingredients) # empty buff if no lotus
+		var lotusBuff = Buff.getLotusBuff(self.ingredients) # empty buff if no lotus
 		for ingredient in ingredients:
+			if ingredient.effectBuff == null: continue
 			lotusBuff = lotusBuff.combine(ingredient.effectBuff)
 		return lotusBuff
 

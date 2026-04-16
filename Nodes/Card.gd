@@ -14,7 +14,7 @@ func _ready() -> void:
 	self.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 
 func pressed():
-	self.is_selected = ! self.is_selected
+	self.is_selected = !self.is_selected
 	if is_selected:
 		$SelectionLabel.text = "Selected"
 		$SelectionLabel.add_theme_color_override("font_color", Color.GREEN)
@@ -22,4 +22,4 @@ func pressed():
 		$SelectionLabel.text = "Unselected"
 		$SelectionLabel.add_theme_color_override("font_color", Color.WHITE)
 		
-	selection_changed.emit(self.is_selected, self )
+	selection_changed.emit(self.is_selected, self)

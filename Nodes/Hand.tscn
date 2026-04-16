@@ -36,7 +36,7 @@ offset_bottom = 17.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 text = "No effect. Select some ingredients to show its effect here."
 
-[node name="CardSpot" type="HBoxContainer" parent="." unique_id=244309721]
+[node name="CardSlots" type="HBoxContainer" parent="." unique_id=244309721]
 layout_mode = 0
 offset_left = -447.0
 offset_top = -113.0
