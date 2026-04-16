@@ -44,6 +44,7 @@ func _ready() -> void:
 	chooseIntent()
 
 func chooseIntent():
+	if (isDead()): return
 	target = randi() % TARGETS.size() as TARGETS
 	attack = randi_range(3, maxAttack)
 	if target == TARGETS.ALL: attack /= 3 # If attacking all heroes, reduce the damage appropiately
@@ -66,9 +67,9 @@ func updateHealth(amount: int):
 	health = clampi(health, 0, maxHealth) # Clamp health to 0-maxHealth
 	healthBar.value = health
 	healthText.text = "%s / %s" % [health, maxHealth]
-	if (health <= 0):
+	if (isDead()):
 		sprite.flip_v = true
-		intentText.text = ""
+		updateIntentDisplay()
 
 func drinkPotion(potion: Potion):
 	if drankPotion: return
@@ -90,6 +91,11 @@ func endOfTurn():
 	updateIntentDisplay()
 
 func updateIntentDisplay():
+	intentText.text = "" # Clear display to start, cause they might be dead
+	if isDead(): return
 	intentText.text = "Attacking %s for %s damage" % [TARGETS.keys()[target], attack]
 	if defense > 0: intentText.text += "\nDefending for %s" % defense
 	if healing > 0: intentText.text += "\nHealing for %s" % healing
+
+func isDead():
+	return health <= 0
