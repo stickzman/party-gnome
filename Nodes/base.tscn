@@ -92,10 +92,10 @@ text = "(empty)"
 autowrap_mode = 2
 
 [node name="UsingPotionLabel" type="Label" parent="PotionBelt/FirstPotionSlot" unique_id=1013332750]
-offset_left = 1069.7587
-offset_top = 65.731285
-offset_right = 1113.7587
-offset_bottom = 88.731285
+offset_left = 928.9059
+offset_top = 52.729492
+offset_right = 972.9059
+offset_bottom = 75.72949
 text = "Using"
 
 [node name="SecondPotionSlot" type="Node2D" parent="PotionBelt" unique_id=1442670714]
@@ -116,10 +116,10 @@ text = "(empty)"
 autowrap_mode = 2
 
 [node name="UsingPotionLabel" type="Label" parent="PotionBelt/SecondPotionSlot" unique_id=1586739675]
-offset_left = 1069.7587
-offset_top = 129.29561
-offset_right = 1113.7587
-offset_bottom = 152.29562
+offset_left = 930.3505
+offset_top = 111.959885
+offset_right = 974.3505
+offset_bottom = 134.9599
 text = "Using"
 
 [node name="PotionBeltLabel" type="Label" parent="PotionBelt" unique_id=1878696711]
