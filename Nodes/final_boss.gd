@@ -25,7 +25,7 @@ var attack := 0
 var defense := 0 # Only applicable if the player uses a DEF potion on the FinalBoss
 const maxDefense := 9999
 var healing := 0 # Only applicable if the player uses a HEAL potion on the FinalBoss
-var maxHealth := 1
+var maxHealth := 100
 var health := maxHealth
 
 enum TARGETS {BARB, MARGE, BEAU, ALL}
