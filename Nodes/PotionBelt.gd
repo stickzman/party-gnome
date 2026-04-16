@@ -52,7 +52,6 @@ func on_use_second_potion():
 func can_add_potion() -> bool:
 	return !firstPotion or !secondPotion
 
-# TODO: bug where adding a second potion overrides the first with the latest
 func add_potion(potion: Potion):
 	if !can_add_potion():
 		# TODO: disable the make potion button somehow

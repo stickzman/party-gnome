@@ -113,9 +113,6 @@ func draw_hand():
 		print("triggering xfer")
 		assert(drawPile.pile.size() == 0, "draw pile should be empty to trigger discard xfer")
 		var out = discardPile.transfer_out()
-		if out.is_empty():
-			# TODO: end game
-			get_tree().quit() # temp just crash, not great
 			
 		drawPile.shuffle_in(out)
 		print("draw pile shuffled in")
