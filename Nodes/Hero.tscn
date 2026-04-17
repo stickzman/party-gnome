@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://bkj6dlv0sxo3g"]
+
+[ext_resource type="Script" uid="uid://wr8kjfu5qqsd" path="res://Nodes/hero.gd" id="1_1no4y"]
+[ext_resource type="Texture2D" uid="uid://cyo3n5xmkc4od" path="res://Assets/Placeholder Art/Untitled-3.png" id="1_6xbbc"]
+[ext_resource type="Shader" uid="uid://c07trc6tpwumy" path="res://highlight.gdshader" id="3_x758u"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1my7d"]
+shader = ExtResource("3_x758u")
+shader_parameter/width = 10.0
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1no4y"]
+size = Vector2(362, 387)
+
+[node name="Hero" type="Node2D" unique_id=272325375]
+script = ExtResource("1_1no4y")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1525626712]
+texture = ExtResource("1_6xbbc")
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=1341795075]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -170.5
+offset_top = -278.0
+offset_right = 170.5
+offset_bottom = -168.0
+grow_horizontal = 2
+grow_vertical = 2
+show_percentage = false
+
+[node name="HealthText" type="Label" parent="HealthBar" unique_id=1498763868]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 10.0
+offset_right = 340.0
+offset_bottom = 102.0
+theme_override_font_sizes/font_size = 67
+text = "Health"
+horizontal_alignment = 1
+
+[node name="IntentText" type="Label" parent="." unique_id=1098469139]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -143.5
+offset_top = -371.0
+offset_right = 143.5
+offset_bottom = -284.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 31
+text = "Intention"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NameText" type="Label" parent="." unique_id=2141810571]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.5
+offset_top = 188.0
+offset_right = 44.5
+offset_bottom = 210.33333
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 38
+text = "Hero Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Highlight" type="Sprite2D" parent="." unique_id=1761373353]
+visible = false
+material = SubResource("ShaderMaterial_1my7d")
+texture = ExtResource("1_6xbbc")
+
+[node name="ClickTarget" type="Area2D" parent="." unique_id=1368350069]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickTarget" unique_id=1676857627]
+position = Vector2(0, 25.5)
+shape = SubResource("RectangleShape2D_1no4y")

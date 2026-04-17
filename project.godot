@@ -10,10 +10,24 @@ config_version=5
 
 [application]
 
-config/name="Party Gnome"
-run/main_scene="uid://b0idkl53811w"
-config/features=PackedStringArray("4.6", "GL Compatibility")
+config/name="Final Boss vs Smoothies"
+run/main_scene="uid://b5g3k30y5ybs7"
+config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/stretch/mode="canvas_items"
+
+[global_group]
+
+card="Scenes that are cards"
+
+[gui]
+
+theme/default_font_multichannel_signed_distance_field=true
 
 [physics]
 
@@ -22,5 +36,3 @@ config/icon="res://icon.svg"
 [rendering]
 
 rendering_device/driver.windows="d3d12"
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"
