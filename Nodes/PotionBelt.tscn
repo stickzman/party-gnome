@@ -1,65 +1,73 @@
-[gd_scene format=3 uid="uid://dcitfj0mabf3p"]
+[gd_scene format=3 uid="uid://bwvlbtqjvfj6u"]
 
-[ext_resource type="Script" uid="uid://dv24spjrf0k1g" path="res://Nodes/PotionBelt.gd" id="1_62bve"]
+[ext_resource type="Script" uid="uid://ctjvmun0nv5ee" path="res://Nodes/PotionBelt.gd" id="1_jrum3"]
 
-[node name="PotionBelt" type="Node2D" unique_id=1902995949]
-script = ExtResource("1_62bve")
+[sub_resource type="Theme" id="Theme_clj8n"]
+default_font_size = 25
 
-[node name="Panel" type="Panel" parent="." unique_id=589424405]
-offset_right = 417.0
-offset_bottom = 156.0
+[node name="PotionBelt" type="PanelContainer" unique_id=92051915]
+custom_minimum_size = Vector2(500, 0)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -302.0
+offset_top = 10.0
+offset_right = -8.0
+offset_bottom = 134.0
+grow_horizontal = 0
+theme = SubResource("Theme_clj8n")
+script = ExtResource("1_jrum3")
 
-[node name="FirstPotionSlot" type="Node2D" parent="." unique_id=1548029703]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1125774377]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="UseFirstPotionButton" type="Button" parent="FirstPotionSlot" unique_id=1788672199]
-offset_left = 12.0
-offset_top = 36.0
-offset_right = 63.0
-offset_bottom = 67.0
-text = "USE 1"
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=506199076]
+layout_mode = 2
+theme_override_constants/separation = 10
 
-[node name="FirstPotionLabel" type="Label" parent="FirstPotionSlot" unique_id=1483377779]
-offset_left = 78.0
-offset_top = 35.0
-offset_right = 404.0
-offset_bottom = 93.0
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer" unique_id=497617999]
+layout_mode = 2
+text = "Potion Belt"
+horizontal_alignment = 1
+
+[node name="FirstPotionContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=633515290]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="FirstPotionBtn" type="Button" parent="MarginContainer/VBoxContainer/FirstPotionContainer" unique_id=2030393059]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+disabled = true
+text = "Use Potion"
+
+[node name="FirstPotionLabel" type="Label" parent="MarginContainer/VBoxContainer/FirstPotionContainer" unique_id=707528082]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
 text = "(empty)"
 autowrap_mode = 2
+justification_flags = 171
 
-[node name="UsingPotionLabel" type="Label" parent="FirstPotionSlot" unique_id=1699237607]
-offset_left = 16.0
-offset_top = 66.0
-offset_right = 60.0
-offset_bottom = 89.0
-text = "Using"
+[node name="SecondPotionContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1494855946]
+layout_mode = 2
+theme_override_constants/separation = 10
 
-[node name="SecondPotionSlot" type="Node2D" parent="." unique_id=1316193740]
+[node name="SecondPotionBtn" type="Button" parent="MarginContainer/VBoxContainer/SecondPotionContainer" unique_id=1180790493]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+disabled = true
+text = "Use Potion"
 
-[node name="UseSecondPotionButton" type="Button" parent="SecondPotionSlot" unique_id=1313987365]
-offset_left = 14.0
-offset_top = 100.0
-offset_right = 65.0
-offset_bottom = 131.0
-text = "USE 2"
-
-[node name="SecondPotionLabel" type="Label" parent="SecondPotionSlot" unique_id=438561695]
-offset_left = 78.0
-offset_top = 98.0
-offset_right = 409.0
-offset_bottom = 152.0
+[node name="SecondPotionLabel" type="Label" parent="MarginContainer/VBoxContainer/SecondPotionContainer" unique_id=1449664855]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
 text = "(empty)"
 autowrap_mode = 2
-
-[node name="UsingPotionLabel" type="Label" parent="SecondPotionSlot" unique_id=1668097145]
-offset_left = 19.0
-offset_top = 132.0
-offset_right = 63.0
-offset_bottom = 155.0
-text = "Using"
-
-[node name="PotionBeltLabel" type="Label" parent="." unique_id=1739277084]
-offset_left = 12.0
-offset_top = 4.0
-offset_right = 93.0
-offset_bottom = 27.0
-text = "PotionBelt"
+justification_flags = 171

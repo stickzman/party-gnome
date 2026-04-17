@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b5v8y0ieguooy" path="res://Assets/Placeholder Art/Untitled-5.png" id="7_tfdc1"]
 [ext_resource type="PackedScene" uid="uid://c2xw2ml6s3rc5" path="res://Nodes/Hand.tscn" id="8_snegy"]
 [ext_resource type="PackedScene" uid="uid://bkotb0e3fqbta" path="res://Nodes/DrawPile.tscn" id="9_rr44f"]
-[ext_resource type="PackedScene" uid="uid://bwvlbtqjvfj6u" path="res://PotionBeltv2.tscn" id="10_snegy"]
+[ext_resource type="PackedScene" uid="uid://bwvlbtqjvfj6u" path="res://Nodes/PotionBelt.tscn" id="10_snegy"]
 [ext_resource type="PackedScene" uid="uid://c8nt1hal7rant" path="res://Nodes/DiscardPile.tscn" id="10_uq6bc"]
 
 [node name="GameManager" type="Node2D" unique_id=716799636]
