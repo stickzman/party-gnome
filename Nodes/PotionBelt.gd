@@ -1,122 +1,73 @@
-class_name PotionBelt
-extends Node2D
+extends PanelContainer
 
-enum Slot {FIRST, SECOND, NONE}
-enum Selection {TOGGLED, SELECTED, NOTHING}
+@onready var firstPotionBtn := %FirstPotionBtn
+@onready var firstPotionLabel := %FirstPotionLabel
+@onready var secondPotionBtn := %SecondPotionBtn
+@onready var secondPotionLabel := %SecondPotionLabel
 
-# At most two potions can be present
-var firstPotion: Potion = null
-var secondPotion: Potion = null
+var firstPotion: Potion
+var secondPotion: Potion
 
-var selectedPotion = Slot.NONE
+const USE_TEXT := "Use Potion"
+const USING_TEXT := "Using..."
+const EMPTY_TEXT := "(empty)"
 
-const EMPTY_LABEL = "(empty)"
-const USING_LABEL = "Using"
+signal potion_selected
+signal potion_deselected
 
-signal using_potion
-signal stop_using_potion
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$FirstPotionSlot/UseFirstPotionButton.connect("pressed", on_use_first_potion)
-	$SecondPotionSlot/UseSecondPotionButton.connect("pressed", on_use_second_potion)
-	$FirstPotionSlot/UsingPotionLabel.text = ""
-	$SecondPotionSlot/UsingPotionLabel.text = ""
+    firstPotionBtn.connect("pressed", toggleFirstPotion)
+    secondPotionBtn.connect("pressed", toggleSecondPotion)
 
-func on_use_first_potion():
-	var selection = toggleSelectPotion(PotionBelt.Slot.FIRST)
-	if selection == PotionBelt.Selection.NOTHING:
-		# nothing to select
-		return ;
-	if selection == PotionBelt.Selection.TOGGLED:
-		$FirstPotionSlot/UsingPotionLabel.text = ""
-		emit_signal("stop_using_potion", firstPotion)
-		return
-	if selection == PotionBelt.Selection.SELECTED:
-		$FirstPotionSlot/UsingPotionLabel.text = USING_LABEL
-		emit_signal("using_potion", firstPotion)
+func addPotion(potion: Potion):
+    if !firstPotion:
+        firstPotion = potion
+        firstPotionBtn.disabled = false
+        firstPotionLabel.text = potion.effectBuff.get_message()
+    elif !secondPotion:
+        secondPotion = potion
+        secondPotionBtn.disabled = false
+        secondPotionLabel.text = potion.effectBuff.get_message()
+    else:
+        print("can't add more potions, we're full")
 
-func on_use_second_potion():
-	var selection = toggleSelectPotion(PotionBelt.Slot.SECOND)
-	if selection == PotionBelt.Selection.NOTHING:
-		# nothing to select
-		return ;
-	if selection == PotionBelt.Selection.TOGGLED:
-		$SecondPotionSlot/UsingPotionLabel.text = ""
-		emit_signal("stop_using_potion", secondPotion)
-		return
-	if selection == PotionBelt.Selection.SELECTED:
-		$SecondPotionSlot/UsingPotionLabel.text = USING_LABEL
-		emit_signal("using_potion", secondPotion)
-
-func can_add_potion() -> bool:
-	return !firstPotion or !secondPotion
-
-func add_potion(potion: Potion):
-	if !can_add_potion():
-		# TODO: disable the make potion button somehow
-		return
-	addPotion(potion);
-	# TODO: handle full?
-	assert(firstPotion == potion or secondPotion == potion)
-	assert(!(firstPotion == potion and secondPotion == potion))
-	if firstPotion:
-		$FirstPotionSlot/FirstPotionLabel.text = firstPotion.effectBuff.get_message();
-		$FirstPotionSlot/UseFirstPotionButton.disabled = false
-	else:
-		$FirstPotionSlot/FirstPotionLabel.text = EMPTY_LABEL
-		$FirstPotionSlot/UseFirstPotionButton.disabled = true
-	
-	if secondPotion:
-		$SecondPotionSlot/SecondPotionLabel.text = secondPotion.effectBuff.get_message();
-		$SecondPotionSlot/UseSecondPotionButton.disabled = false
-	else:
-		$SecondPotionSlot/SecondPotionLabel.text = EMPTY_LABEL
-		$SecondPotionSlot/UseSecondPotionButton.disabled = true
-
-func use_potion(potion: Potion):
-	if firstPotion == potion:
-		$FirstPotionSlot/FirstPotionLabel.text = EMPTY_LABEL
-		$FirstPotionSlot/UseFirstPotionButton.disabled = true
-		$FirstPotionSlot/UsingPotionLabel.text = ""
-	else:
-		# it better be the second potion or I'm gonna scream
-		assert(secondPotion == potion)
-		$SecondPotionSlot/SecondPotionLabel.text = EMPTY_LABEL
-		$SecondPotionSlot/UseSecondPotionButton.disabled = true
-		$SecondPotionSlot/UsingPotionLabel.text = ""
-	removePotion(potion)
+func removePotion(potion: Potion):
+    if firstPotion == potion:
+        firstPotion = null
+        firstPotionBtn.disabled = true
+        if secondPotion: secondPotionBtn.disabled = false
+        firstPotionBtn.text = USE_TEXT
+        firstPotionLabel.text = EMPTY_TEXT
+    elif secondPotion == potion:
+        secondPotion = null
+        secondPotionBtn.disabled = true
+        if firstPotion: firstPotionBtn.disabled = false
+        secondPotionBtn.text = USE_TEXT
+        secondPotionLabel.text = EMPTY_TEXT
+    else:
+        printerr("Attempted to remove Potion %s that isn't in PotionBelt" % potion)
 
 
-func toggleSelectPotion(slot: Slot) -> Selection:
-	if (slot == Slot.FIRST and !firstPotion) or (slot == Slot.SECOND and !secondPotion):
-		# Can't select what's not there
-		return Selection.NOTHING
-	if slot == selectedPotion:
-		selectedPotion = Slot.NONE
-		return Selection.TOGGLED;
-	selectedPotion = slot
-	return Selection.SELECTED # Only one selected at a time
-	
+func toggleFirstPotion():
+    if firstPotionBtn.text == USING_TEXT:
+        # Toggle off
+        firstPotionBtn.text = USE_TEXT
+        if secondPotion: secondPotionBtn.disabled = false
+        potion_deselected.emit()
+    else:
+        # Toggle on
+        firstPotionBtn.text = USING_TEXT
+        secondPotionBtn.disabled = true
+        potion_selected.emit(firstPotion)
 
-func addPotion(potion: Potion) -> Slot:
-	if self.firstPotion == null:
-		self.firstPotion = potion
-		return Slot.FIRST
-		
-	if self.secondPotion == null:
-		self.secondPotion = potion
-		return Slot.SECOND
-		
-	return Slot.NONE
-	
-func removePotion(potion: Potion) -> void:
-	if firstPotion == potion:
-		if selectedPotion == Slot.FIRST: selectedPotion = Slot.NONE
-		self.firstPotion = null
-		return
-		
-	if secondPotion == potion:
-		if selectedPotion == Slot.SECOND: selectedPotion = Slot.NONE
-		self.secondPotion = null
-		return
+func toggleSecondPotion():
+    if secondPotionBtn.text == USING_TEXT:
+        # Toggle off
+        secondPotionBtn.text = USE_TEXT
+        firstPotionBtn.disabled = false
+        potion_deselected.emit()
+    else:
+        # Toggle on
+        secondPotionBtn.text = USING_TEXT
+        if firstPotion: firstPotionBtn.disabled = true
+        potion_selected.emit(secondPotion)
