@@ -4,7 +4,7 @@ extends Node2D
 @onready var barb := $Barb
 @onready var beau := $Beau
 @onready var boss := $FinalBoss
-@onready var potionBelt := $PotionBelt
+@onready var potionBelt := %PotionBelt
 @onready var hand: Hand = $Hand
 @onready var drawPile: DrawPile = $DrawPile
 @onready var discardPile: DiscardPile = $DiscardPile
@@ -34,18 +34,18 @@ func _ready() -> void:
 	state = GAME_STATE.CHOOSING_ACTIONS
 	random_moves_phase()
 	# Connect hand to potion belt (what a sentence)
-	hand.connect("potion_created", potionBelt.add_potion)
+	hand.connect("potion_created", potionBelt.addPotion)
 	draw_hand()
 
 	# Connect heroes to PotionBelt
 	for hero in heroes: hero.connect("clicked", onCharacterClicked)
 	boss.connect("clicked", onCharacterClicked)
-	potionBelt.connect("using_potion", func(potion):
+	potionBelt.connect("potion_selected", func(potion):
 		currentPotion = potion
 		for hero in heroes: hero.hoverable = true
 		boss.hoverable = true
 	)
-	potionBelt.connect("stop_using_potion", func(_potion):
+	potionBelt.connect("potion_deselected", func():
 		currentPotion = null
 		for hero in heroes: hero.hoverable = false
 		boss.hoverable = false
@@ -141,7 +141,7 @@ func draw_hand():
 func onCharacterClicked(character):
 	if currentPotion == null || character.drankPotion: return
 	character.drinkPotion(currentPotion)
-	potionBelt.use_potion(currentPotion)
+	potionBelt.removePotion(currentPotion)
 	discardPile.release_ingredients_in_potion(currentPotion)
 	currentPotion = null
 	for hero in heroes: hero.hoverable = false
