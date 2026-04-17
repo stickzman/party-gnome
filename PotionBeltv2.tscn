@@ -40,14 +40,14 @@ theme_override_constants/separation = 10
 
 [node name="FirstPotionBtn" type="Button" parent="MarginContainer/VBoxContainer/FirstPotionContainer" unique_id=2030393059]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(100, 0)
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 disabled = true
 text = "Use Potion"
 
 [node name="FirstPotionLabel" type="Label" parent="MarginContainer/VBoxContainer/FirstPotionContainer" unique_id=707528082]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(170, 0)
+custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
 text = "(empty)"
 autowrap_mode = 2
@@ -59,14 +59,14 @@ theme_override_constants/separation = 10
 
 [node name="SecondPotionBtn" type="Button" parent="MarginContainer/VBoxContainer/SecondPotionContainer" unique_id=1180790493]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(100, 0)
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 disabled = true
 text = "Use Potion"
 
 [node name="SecondPotionLabel" type="Label" parent="MarginContainer/VBoxContainer/SecondPotionContainer" unique_id=1449664855]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(170, 0)
+custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
 text = "(empty)"
 autowrap_mode = 2
