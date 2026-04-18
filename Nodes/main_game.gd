@@ -98,7 +98,7 @@ func _on_end_turn_button_down() -> void:
 		%WinMessage.visible = true
 		endTurnBtn.disabled = true
 		return
-	if heroes.all(func(hero): return hero.isDead()):
+	elif heroes.all(func(hero): return hero.isDead()):
 		%LoseMessage.visible = true
 		endTurnBtn.disabled = true
 		return
