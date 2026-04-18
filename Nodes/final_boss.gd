@@ -3,12 +3,13 @@ extends Node2D
 
 signal clicked
 
-@onready var sprite := $Sprite2D
+@onready var sprite := $Sprite
 @onready var highlightSprite := $Highlight
 @onready var healthBar := $HealthBar
 @onready var healthText := $HealthBar/HealthText
 @onready var intentText := $IntentText
 @onready var clickTarget := $Area2D
+@onready var animPlayer := $AnimationPlayer
 
 var drankPotion := false
 
@@ -50,6 +51,10 @@ func chooseIntent():
 	if target == TARGETS.ALL: attack /= 3 # If attacking all heroes, reduce the damage appropiately
 	updateIntentDisplay()
 	return target
+
+func attackAnim():
+	animPlayer.play("attack")
+	await animPlayer.animation_finished
 
 # Reduce incoming damage by defense, then return the remaining damage
 func defend(damage: int):

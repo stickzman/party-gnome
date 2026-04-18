@@ -84,6 +84,7 @@ func _on_end_turn_button_down() -> void:
 			boss.hit(hero.attack)
 	
 	# Resolve Boss Attacks
+	boss.attackAnim()
 	match boss.target:
 		FinalBoss.TARGETS.ALL:
 			for hero in heroes: hero.hit(boss.attack)
