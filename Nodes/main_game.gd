@@ -72,6 +72,7 @@ func choose_boss_target():
 
 #resolves the turn by attacking boss, setting move state to false, then having boss attack and setting his attack state to false
 func _on_end_turn_button_down() -> void:
+	endTurnBtn.disabled = true
 	discard_rest_of_hand()
 	state = GAME_STATE.CONCLUDING_ACTION
 	
@@ -109,6 +110,7 @@ func _on_end_turn_button_down() -> void:
 	state = GAME_STATE.CHOOSING_ACTIONS
 	random_moves_phase() # return to random actions phase
 	draw_hand()
+	endTurnBtn.disabled = false
 	
 func discard_rest_of_hand():
 	# OOP actually works wow
