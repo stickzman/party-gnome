@@ -95,21 +95,21 @@ func defend(damage: int):
 func hit(damage: int):
 	if intent == Hero.INTENT.DEFEND || defense == maxDefense:
 		var remainingDamage = defend(damage)
-		if remainingDamage > 0: animPlayer.play("hurt")
 		updateHealth(-remainingDamage)
 	else:
-		if damage > 0: animPlayer.play("hurt")
 		updateHealth(-damage)
 
 func heal():
 	updateHealth(healing)
 
 func updateHealth(amount: int):
+	if amount < 0: animPlayer.play("hurt")
 	health += amount
 	health = clampi(health, 0, maxHealth) # Clamp health to 0-maxHealth
 	healthBar.value = health
 	healthLabel.text = "%s / %s" % [health, maxHealth]
 	if (health <= 0):
+		if amount < 0: await animPlayer.animation_finished
 		sprite.flip_v = true
 		highlightSprite.flip_v = true
 		intent = null
