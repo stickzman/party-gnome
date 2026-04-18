@@ -80,8 +80,8 @@ func _on_end_turn_button_down() -> void:
 	for hero in heroes:
 		if (hero.isDead()): continue
 		if hero.intent == Hero.INTENT.ATTACK:
-			await hero.attackAnim()
-			boss.hit(hero.attack)
+			hero.attackAnim()
+			await boss.hit(hero.attack)
 	
 	# Resolve Boss Attacks
 	boss.attackAnim()

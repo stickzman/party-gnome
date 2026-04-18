@@ -65,6 +65,9 @@ func defend(damage: int):
 
 func hit(damage: int):
 	var remainingDamage = defend(damage)
+	if remainingDamage > 0:
+		animPlayer.play("hurt")
+		await animPlayer.animation_finished
 	updateHealth(-remainingDamage)
 
 func updateHealth(amount: int):
