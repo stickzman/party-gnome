@@ -95,8 +95,10 @@ func defend(damage: int):
 func hit(damage: int):
 	if intent == Hero.INTENT.DEFEND || defense == maxDefense:
 		var remainingDamage = defend(damage)
+		if remainingDamage > 0: animPlayer.play("hurt")
 		updateHealth(-remainingDamage)
 	else:
+		if damage > 0: animPlayer.play("hurt")
 		updateHealth(-damage)
 
 func heal():
