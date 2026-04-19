@@ -76,7 +76,7 @@ func updateHealth(amount: int):
 	healthBar.value = health
 	healthText.text = "%s / %s" % [health, maxHealth]
 	if (isDead()):
-		sprite.flip_v = true
+		create_tween().tween_property($boss_sprite, "modulate:a", 0, 0.75)
 		updateIntentDisplay()
 
 func drinkPotion(potion: Potion):

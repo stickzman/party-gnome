@@ -84,16 +84,17 @@ func _on_end_turn_button_down() -> void:
 			await boss.hit(hero.attack)
 	
 	# Resolve Boss Attacks
-	boss.attackAnim()
-	match boss.target:
-		FinalBoss.TARGETS.ALL:
-			for hero in heroes: hero.hit(boss.attack)
-		FinalBoss.TARGETS.BEAU:
-			beau.hit(boss.attack)
-		FinalBoss.TARGETS.BARB:
-			barb.hit(boss.attack)
-		FinalBoss.TARGETS.MARGE:
-			marge.hit(boss.attack)
+	if !boss.isDead():
+		boss.attackAnim()
+		match boss.target:
+			FinalBoss.TARGETS.ALL:
+				for hero in heroes: hero.hit(boss.attack)
+			FinalBoss.TARGETS.BEAU:
+				beau.hit(boss.attack)
+			FinalBoss.TARGETS.BARB:
+				barb.hit(boss.attack)
+			FinalBoss.TARGETS.MARGE:
+				marge.hit(boss.attack)
 
 	for hero in heroes: hero.endOfTurn()
 	boss.endOfTurn()
