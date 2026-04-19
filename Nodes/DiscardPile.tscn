@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c8nt1hal7rant"]
 
-[ext_resource type="Texture2D" uid="uid://c6txi4duun85x" path="res://Assets/Placeholder Art/jamba_card_back.jpg" id="1_n4ty8"]
 [ext_resource type="Script" uid="uid://bbmmxhglkk7py" path="res://Nodes/DiscardPile.gd" id="1_xny3i"]
+[ext_resource type="Texture2D" uid="uid://bm61xym37biet" path="res://Assets/Jamba and the Final Boss Art/Card Art/Discard.png" id="2_xny3i"]
 
 [node name="DiscardPile" type="Control" unique_id=251435741]
 layout_mode = 3
@@ -14,17 +14,19 @@ script = ExtResource("1_xny3i")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1145978543]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -16.0
+offset_top = -12.000001
+offset_right = 1253.9999
+offset_bottom = 1207.9999
 scale = Vector2(0.1, 0.1)
-texture = ExtResource("1_n4ty8")
+texture = ExtResource("2_xny3i")
 
 [node name="DiscardPileCountLabel" type="Label" parent="." unique_id=267348615]
 layout_mode = 0
-offset_left = 1.0
-offset_top = 59.0
-offset_right = 116.0
-offset_bottom = 103.66667
+offset_left = -9.0
+offset_top = 37.0
+offset_right = 106.0
+offset_bottom = 81.66667
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 text = "0"
@@ -32,9 +34,9 @@ horizontal_alignment = 1
 
 [node name="DiscardPileLabel" type="Label" parent="." unique_id=1808742999]
 layout_mode = 0
-offset_left = 13.0
-offset_top = 35.0
-offset_right = 104.0
-offset_bottom = 58.0
+offset_left = 4.0
+offset_top = 18.0
+offset_right = 95.0
+offset_bottom = 41.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Discard Pile"

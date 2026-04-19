@@ -3,8 +3,8 @@ extends Node2D
 
 signal clicked
 
-@onready var sprite := $Sprite
-@onready var highlightSprite := $Highlight
+@onready var sprite := $AnimatedSprite2D
+@onready var highlightSprite := $HighlightAnim
 @onready var healthBar := $HealthBar
 @onready var healthLabel := $HealthBar/HealthText
 @onready var intentLabel := $IntentText
@@ -40,7 +40,7 @@ func _ready():
 	)
 	clickTarget.connect("mouse_entered", func(): if hoverable: highlightSprite.visible = true)
 	clickTarget.connect("mouse_exited", func(): if hoverable: highlightSprite.visible = false)
-	highlightSprite.texture = sprite.texture
+	highlightSprite.sprite_frames = sprite.sprite_frames
 	nameLabel.text = name
 	healthBar.max_value = maxHealth
 	healthBar.value = health
@@ -105,12 +105,15 @@ func updateHealth(amount: int):
 	if (health <= 0):
 		sprite.flip_v = true
 		highlightSprite.flip_v = true
+		sprite.speed_scale = 0
+		highlightSprite.speed_scale = 0
 		intent = null
 		updateIntentDisplay()
 	else:
 		sprite.flip_v = false
 		highlightSprite.flip_v = false
-
+		sprite.speed_scale = 1
+		highlightSprite.speed_scale = 1
 func isDead():
 	return health <= 0
 
