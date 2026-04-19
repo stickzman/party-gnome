@@ -116,15 +116,14 @@ visible = false
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -352.23987
-offset_top = -215.32037
-offset_right = 667.76013
-offset_bottom = 86.38797
+offset_left = -1389.5916
+offset_top = -426.33795
+offset_right = -369.59155
+offset_bottom = -276.98376
 grow_horizontal = 0
 rotation = -0.30715433
 theme_override_font_sizes/font_size = 107
-text = "LFG!!!!
-You did it! You won!"
+text = "You did it! You won!"
 
 [node name="LoseMessage" type="Label" parent="JambaSprite" unique_id=1573138910]
 unique_name_in_owner = true
@@ -132,15 +131,16 @@ visible = false
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -232.15646
-offset_top = -178.86906
-offset_right = 592.8435
-offset_bottom = -22.119064
+offset_left = -88.37211
+offset_top = -380.98288
+offset_right = 262.67624
+offset_bottom = -117.73288
 grow_horizontal = 0
 theme_override_font_sizes/font_size = 36
 text = "Oof, I'm sorry man.
 Jamba, you should probably just get outta here.
 (you lose)"
+autowrap_mode = 3
 
 [node name="FinalBoss" parent="." unique_id=1236169219 instance=ExtResource("2_thafn")]
 position = Vector2(404.48843, 350.32593)
