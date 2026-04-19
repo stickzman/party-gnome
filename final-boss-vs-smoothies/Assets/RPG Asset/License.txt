@@ -1,0 +1,28 @@
+Featured by JuanLr (https://www.artstation.com/juanluizrodrigues)
+Discord: JuanLr #6920
+
+Includes 
+
+1 Rock
+1 Bed
+1 Chest (open/close)
+6 tilesets
+3 monsters
+2 bosses 
+1 shop
+4 effects
+5 itens
+5 'item exploding' animation
+1 tree
+1 character (2 directions idle and 4 directions walk)
+
+
+Sprite size: 
+
+Bosses 64x64
+Shop 40x40
+all the others: 32x32
+
+
+
+You can use this asset for commercial and non-commercial purposes.
