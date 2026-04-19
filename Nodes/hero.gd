@@ -10,6 +10,7 @@ signal clicked
 @onready var intentLabel := $IntentText
 @onready var nameLabel := $NameText
 @onready var clickTarget := $ClickTarget
+@onready var animPlayer := $AnimationPlayer
 
 @export var maxHealth := 15
 @export var baseAttack := 5
@@ -80,6 +81,10 @@ func updateIntentDisplay():
 			intentLabel.text = ""
 	if defense == maxDefense: intentLabel.text += "\nIMMUNE from damage this turn!"
 
+func attackAnim():
+	animPlayer.play("attack")
+	await animPlayer.animation_finished
+
 # Reduce incoming damage by defense, then return the remaining damage
 func defend(damage: int):
 	defense -= damage
@@ -98,11 +103,13 @@ func heal():
 	updateHealth(healing)
 
 func updateHealth(amount: int):
+	if amount < 0: animPlayer.play("hurt")
 	health += amount
 	health = clampi(health, 0, maxHealth) # Clamp health to 0-maxHealth
 	healthBar.value = health
 	healthLabel.text = "%s / %s" % [health, maxHealth]
 	if (health <= 0):
+		if amount < 0: await animPlayer.animation_finished
 		sprite.flip_v = true
 		highlightSprite.flip_v = true
 		sprite.speed_scale = 0
