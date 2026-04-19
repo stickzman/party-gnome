@@ -94,17 +94,17 @@ position = Vector2(1237.3373, 472.39853)
 scale = Vector2(0.46296296, 0.47777778)
 
 [node name="Label" type="Label" parent="JambaSprite" unique_id=1697074189]
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -120.636475
-offset_top = -186.95596
-offset_right = 108.363525
-offset_bottom = -131.12263
+anchor_bottom = 0.5
+offset_left = -84.75154
+offset_top = 173.36115
+offset_right = 144.24846
+offset_bottom = 229.19447
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 theme_override_font_sizes/font_size = 32
 text = "Jamba (you)"
 horizontal_alignment = 1
