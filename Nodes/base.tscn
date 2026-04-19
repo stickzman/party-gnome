@@ -12,6 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://c8nt1hal7rant" path="res://Nodes/DiscardPile.tscn" id="10_uq6bc"]
 [ext_resource type="Texture2D" uid="uid://d335vmhu65qn" path="res://Assets/Jamba and the Final Boss Art/Character Art/Jamba v1.png" id="11_snegy"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_snegy"]
+bg_color = Color(0.07999998, 0.47866672, 1, 1)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_x78u4"]
 atlas = ExtResource("11_snegy")
 region = Rect2(0, 0, 640, 640)
@@ -140,13 +143,14 @@ Jamba, you should probably just get outta here.
 (you lose)"
 
 [node name="FinalBoss" parent="." unique_id=1236169219 instance=ExtResource("2_thafn")]
-position = Vector2(404.50024, 341.65823)
+position = Vector2(404.48843, 350.32593)
 
 [node name="End Turn" type="Button" parent="." unique_id=760140409]
 offset_left = 1214.9453
 offset_top = 161.07777
 offset_right = 1371.9453
 offset_bottom = 203.07777
+theme_override_styles/normal = SubResource("StyleBoxFlat_snegy")
 text = "END TURN"
 
 [node name="Hand" parent="." unique_id=1910097115 instance=ExtResource("8_snegy")]

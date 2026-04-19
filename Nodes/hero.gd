@@ -41,7 +41,6 @@ func _ready():
 	)
 	clickTarget.connect("mouse_entered", func(): if hoverable: highlightSprite.visible = true)
 	clickTarget.connect("mouse_exited", func(): if hoverable: highlightSprite.visible = false)
-	highlightSprite.sprite_frames = sprite.sprite_frames
 	nameLabel.text = name
 	healthBar.max_value = maxHealth
 	healthBar.value = health
