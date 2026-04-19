@@ -9,6 +9,7 @@ signal clicked
 @onready var healthText := $HealthBar/HealthText
 @onready var intentText := $IntentText
 @onready var clickTarget := $Area2D
+@onready var animPlayer := $AnimationPlayer
 
 var drankPotion := false
 
@@ -51,6 +52,10 @@ func chooseIntent():
 	updateIntentDisplay()
 	return target
 
+func attackAnim():
+	animPlayer.play("attack")
+	await animPlayer.animation_finished
+
 # Reduce incoming damage by defense, then return the remaining damage
 func defend(damage: int):
 	defense -= damage
@@ -60,6 +65,9 @@ func defend(damage: int):
 
 func hit(damage: int):
 	var remainingDamage = defend(damage)
+	if remainingDamage > 0:
+		animPlayer.play("hurt")
+		await animPlayer.animation_finished
 	updateHealth(-remainingDamage)
 
 func updateHealth(amount: int):

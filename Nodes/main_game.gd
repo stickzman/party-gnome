@@ -72,15 +72,19 @@ func choose_boss_target():
 
 #resolves the turn by attacking boss, setting move state to false, then having boss attack and setting his attack state to false
 func _on_end_turn_button_down() -> void:
+	endTurnBtn.disabled = true
 	discard_rest_of_hand()
 	state = GAME_STATE.CONCLUDING_ACTION
 	
 	# Resolve hero attacks
 	for hero in heroes:
 		if (hero.isDead()): continue
-		if hero.intent == Hero.INTENT.ATTACK: boss.hit(hero.attack)
+		if hero.intent == Hero.INTENT.ATTACK:
+			hero.attackAnim()
+			await boss.hit(hero.attack)
 	
 	# Resolve Boss Attacks
+	boss.attackAnim()
 	match boss.target:
 		FinalBoss.TARGETS.ALL:
 			for hero in heroes: hero.hit(boss.attack)
@@ -98,7 +102,7 @@ func _on_end_turn_button_down() -> void:
 		%WinMessage.visible = true
 		endTurnBtn.disabled = true
 		return
-	if heroes.all(func(hero): return hero.isDead()):
+	elif heroes.all(func(hero): return hero.isDead()):
 		%LoseMessage.visible = true
 		endTurnBtn.disabled = true
 		return
@@ -107,6 +111,7 @@ func _on_end_turn_button_down() -> void:
 	state = GAME_STATE.CHOOSING_ACTIONS
 	random_moves_phase() # return to random actions phase
 	draw_hand()
+	endTurnBtn.disabled = false
 	
 func discard_rest_of_hand():
 	# OOP actually works wow
