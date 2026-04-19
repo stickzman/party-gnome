@@ -3,7 +3,7 @@ extends Node2D
 
 signal clicked
 
-@onready var sprite := $Sprite
+@onready var sprite := $boss_sprite
 @onready var highlightSprite := $Highlight
 @onready var healthBar := $HealthBar
 @onready var healthText := $HealthBar/HealthText

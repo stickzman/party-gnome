@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" uid="uid://bvw1vom4rubt2" path="res://Resources/Brewing/Ingredients/Ingredient.gd" id="1_b0jvg"]
 [ext_resource type="Resource" uid="uid://nhogpvesbnjf" path="res://Resources/Brewing/Buffs/LemonBuff.tres" id="1_rcw5e"]
-[ext_resource type="Texture2D" uid="uid://cb2sa018rm4cq" path="res://Assets/Placeholder Art/lemon.jpg" id="3_3r83o"]
+[ext_resource type="Texture2D" uid="uid://8qxaccbwn1mw" path="res://Assets/Jamba and the Final Boss Art/Card Art/Jar Card - Lemon-1.png.png" id="3_rcw5e"]
 
 [resource]
 script = ExtResource("1_b0jvg")
 name = "Lemon"
 effectDescription = "+4 HP"
-sprite = ExtResource("3_3r83o")
+sprite = ExtResource("3_rcw5e")
 amountInDeck = 3
 effectBuff = ExtResource("1_rcw5e")
 metadata/_custom_type_script = "uid://bvw1vom4rubt2"

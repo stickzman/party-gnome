@@ -1,36 +1,94 @@
 [gd_scene format=3 uid="uid://b5g3k30y5ybs7"]
 
 [ext_resource type="Script" uid="uid://dec162hbq8px1" path="res://Nodes/main_game.gd" id="1_t3qsy"]
+[ext_resource type="Texture2D" uid="uid://6o3kgi6agxpu" path="res://Assets/Jamba and the Final Boss Art/Background/Red Eclipse.png" id="2_snegy"]
 [ext_resource type="PackedScene" uid="uid://bdhdjlh0h4tyw" path="res://Nodes/final_boss.tscn" id="2_thafn"]
 [ext_resource type="PackedScene" uid="uid://cqaftxslxtwk8" path="res://Nodes/Marge.tscn" id="3_t3qsy"]
 [ext_resource type="PackedScene" uid="uid://ddc20escti61c" path="res://Nodes/Barb.tscn" id="4_t3qsy"]
 [ext_resource type="PackedScene" uid="uid://xdo6bbfgp2mf" path="res://Nodes/Beau.tscn" id="5_tfdc1"]
-[ext_resource type="Texture2D" uid="uid://b5v8y0ieguooy" path="res://Assets/Placeholder Art/Untitled-5.png" id="7_tfdc1"]
 [ext_resource type="PackedScene" uid="uid://c2xw2ml6s3rc5" path="res://Nodes/Hand.tscn" id="8_snegy"]
 [ext_resource type="PackedScene" uid="uid://bkotb0e3fqbta" path="res://Nodes/DrawPile.tscn" id="9_rr44f"]
 [ext_resource type="PackedScene" uid="uid://bwvlbtqjvfj6u" path="res://Nodes/PotionBelt.tscn" id="10_snegy"]
 [ext_resource type="PackedScene" uid="uid://c8nt1hal7rant" path="res://Nodes/DiscardPile.tscn" id="10_uq6bc"]
+[ext_resource type="Texture2D" uid="uid://d335vmhu65qn" path="res://Assets/Jamba and the Final Boss Art/Character Art/Jamba v1.png" id="11_snegy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x78u4"]
+atlas = ExtResource("11_snegy")
+region = Rect2(0, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ld7gu"]
+atlas = ExtResource("11_snegy")
+region = Rect2(640, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bltit"]
+atlas = ExtResource("11_snegy")
+region = Rect2(0, 640, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1tgqf"]
+atlas = ExtResource("11_snegy")
+region = Rect2(640, 640, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_870oq"]
+atlas = ExtResource("11_snegy")
+region = Rect2(0, 1280, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_60o7x"]
+atlas = ExtResource("11_snegy")
+region = Rect2(640, 1280, 640, 640)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ub48g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x78u4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ld7gu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bltit")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1tgqf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_870oq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_60o7x")
+}],
+"loop": true,
+"name": &"default",
+"speed": 9.0
+}]
 
 [node name="GameManager" type="Node2D" unique_id=716799636]
 scale = Vector2(1.3844244, 1.3844244)
 script = ExtResource("1_t3qsy")
 
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1871214481]
+offset_left = -2.166962
+offset_top = 0.72232825
+offset_right = 1387.2593
+offset_bottom = 782.2746
+texture = ExtResource("2_snegy")
+expand_mode = 1
+
 [node name="Marge" parent="." unique_id=272325375 instance=ExtResource("3_t3qsy")]
-position = Vector2(716, 284)
+position = Vector2(1099.3738, 333.71268)
 scale = Vector2(0.3296739, 0.3296739)
 
 [node name="Barb" parent="." unique_id=975474634 instance=ExtResource("4_t3qsy")]
-position = Vector2(583.99994, 442)
+position = Vector2(790.2202, 417.50208)
 scale = Vector2(0.31860963, 0.31860963)
 
 [node name="Beau" parent="." unique_id=173704423 instance=ExtResource("5_tfdc1")]
-position = Vector2(847, 161)
+position = Vector2(966.46655, 461.56366)
 scale = Vector2(0.3139727, 0.3139727)
 
 [node name="JambaSprite" type="Sprite2D" parent="." unique_id=103974361]
-position = Vector2(872, 378)
+position = Vector2(1237.3373, 472.39853)
 scale = Vector2(0.46296296, 0.47777778)
-texture = ExtResource("7_tfdc1")
 
 [node name="Label" type="Label" parent="JambaSprite" unique_id=1697074189]
 anchors_preset = 7
@@ -38,10 +96,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -317.0
-offset_top = -256.82147
-offset_right = -88.0
-offset_bottom = -200.98814
+offset_left = -120.636475
+offset_top = -186.95596
+offset_right = 108.363525
+offset_bottom = -131.12263
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 32
@@ -82,33 +140,40 @@ Jamba, you should probably just get outta here.
 (you lose)"
 
 [node name="FinalBoss" parent="." unique_id=1236169219 instance=ExtResource("2_thafn")]
-position = Vector2(246, 317)
+position = Vector2(404.50024, 341.65823)
 
 [node name="End Turn" type="Button" parent="." unique_id=760140409]
-offset_left = 792.0
-offset_top = 487.0
-offset_right = 949.0
-offset_bottom = 529.0
+offset_left = 1214.9453
+offset_top = 161.07777
+offset_right = 1371.9453
+offset_bottom = 203.07777
 text = "END TURN"
 
 [node name="Hand" parent="." unique_id=1910097115 instance=ExtResource("8_snegy")]
-offset_left = 669.0
-offset_top = 697.2196
-offset_right = 669.0
-offset_bottom = 697.2196
+offset_left = 691.9843
+offset_top = 725.2111
+offset_right = 691.9843
+offset_bottom = 725.2111
 
 [node name="DrawPile" parent="." unique_id=1445647496 instance=ExtResource("9_rr44f")]
 position = Vector2(119, 666)
 
 [node name="DiscardPile" parent="." unique_id=251435741 instance=ExtResource("10_uq6bc")]
-offset_left = 1121.0
-offset_top = 576.0
-offset_right = 1121.0
-offset_bottom = 576.0
+offset_left = 1253.2284
+offset_top = 603.8611
+offset_right = 1253.2284
+offset_bottom = 603.8611
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=322166057]
 
 [node name="PotionBelt" parent="UI" unique_id=92051915 instance=ExtResource("10_snegy")]
 unique_name_in_owner = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=13373441]
+position = Vector2(1244.5605, 476.73236)
+scale = Vector2(0.23871368, 0.23871368)
+sprite_frames = SubResource("SpriteFrames_ub48g")
+autoplay = "default"
+frame_progress = 0.61007077
 
 [connection signal="button_down" from="End Turn" to="." method="_on_end_turn_button_down"]

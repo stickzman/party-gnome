@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bvw1vom4rubt2" path="res://Resources/Brewing/Ingredients/Ingredient.gd" id="1_i8esf"]
 [ext_resource type="Resource" uid="uid://0tv2yebns11e" path="res://Resources/Brewing/Buffs/CherryBuff.tres" id="1_r514c"]
-[ext_resource type="Texture2D" uid="uid://d0nbl1t3wyn0t" path="res://Assets/Placeholder Art/cherry.jpg" id="3_0775o"]
+[ext_resource type="Texture2D" uid="uid://c1l84k2ct7jp5" path="res://Assets/Jamba and the Final Boss Art/Card Art/Jar Card - Cherry-1.png.png" id="3_0775o"]
 
 [resource]
 script = ExtResource("1_i8esf")

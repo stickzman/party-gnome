@@ -3,6 +3,64 @@
 [ext_resource type="Texture2D" uid="uid://b6vtrwjfwhbvm" path="res://Assets/Placeholder Art/Untitled.png" id="1_s7vmn"]
 [ext_resource type="Script" uid="uid://24a0gvlv6pcb" path="res://Nodes/final_boss.gd" id="1_xh2d0"]
 [ext_resource type="Shader" uid="uid://c07trc6tpwumy" path="res://highlight.gdshader" id="3_gbg3d"]
+[ext_resource type="Texture2D" uid="uid://c0hcx07mhpwrt" path="res://Assets/Jamba and the Final Boss Art/Character Art/Grim.png" id="4_naqtg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4t5sk"]
+atlas = ExtResource("4_naqtg")
+region = Rect2(0, 0, 1280, 1280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o60xt"]
+atlas = ExtResource("4_naqtg")
+region = Rect2(1280, 0, 1280, 1280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hfl3o"]
+atlas = ExtResource("4_naqtg")
+region = Rect2(2560, 0, 1280, 1280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_88aqb"]
+atlas = ExtResource("4_naqtg")
+region = Rect2(0, 1280, 1280, 1280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tt15c"]
+atlas = ExtResource("4_naqtg")
+region = Rect2(1280, 1280, 1280, 1280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8gmt"]
+atlas = ExtResource("4_naqtg")
+region = Rect2(2560, 1280, 1280, 1280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0avse"]
+atlas = ExtResource("4_naqtg")
+region = Rect2(0, 2560, 1280, 1280)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qsnw4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4t5sk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o60xt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hfl3o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_88aqb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tt15c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8gmt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0avse")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_naqtg"]
 shader = ExtResource("3_gbg3d")
@@ -115,13 +173,25 @@ _data = {
 [node name="FinalBoss" type="Node2D" unique_id=1236169219]
 script = ExtResource("1_xh2d0")
 
-[node name="Sprite" type="Sprite2D" parent="." unique_id=285156955]
+[node name="boss_sprite" type="AnimatedSprite2D" parent="." unique_id=1659639647]
+position = Vector2(9.000001, 8.999999)
+scale = Vector2(0.2716797, 0.2615234)
+sprite_frames = SubResource("SpriteFrames_qsnw4")
+autoplay = "default"
+frame = 5
+frame_progress = 0.21808428
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=285156955]
+visible = false
 texture = ExtResource("1_s7vmn")
 
 [node name="Highlight" type="Sprite2D" parent="." unique_id=1638059138]
 visible = false
 material = SubResource("ShaderMaterial_naqtg")
-texture = ExtResource("1_s7vmn")
+scale = Vector2(0.272, 0.262)
+texture = ExtResource("4_naqtg")
+region_enabled = true
+region_rect = Rect2(-2.6708984, -8.946381, 1057.206, 1247.6342)
 
 [node name="IntentText" type="Label" parent="." unique_id=1754793739]
 anchors_preset = 8
