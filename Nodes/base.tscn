@@ -140,7 +140,7 @@ Jamba, you should probably just get outta here.
 (you lose)"
 
 [node name="FinalBoss" parent="." unique_id=1236169219 instance=ExtResource("2_thafn")]
-position = Vector2(404.50024, 341.65823)
+position = Vector2(404.48843, 350.32593)
 
 [node name="End Turn" type="Button" parent="." unique_id=760140409]
 offset_left = 1214.9453

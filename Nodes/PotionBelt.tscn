@@ -50,7 +50,6 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
 text = "(empty)"
-autowrap_mode = 2
 justification_flags = 171
 
 [node name="SecondPotionContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1494855946]
@@ -69,5 +68,4 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
 text = "(empty)"
-autowrap_mode = 2
 justification_flags = 171
