@@ -5,7 +5,7 @@ extends Node2D
 @onready var beau := $Beau
 @onready var boss := $FinalBoss
 @onready var potionBelt := %PotionBelt
-@onready var hand: Hand = $Hand
+@onready var hand: Hand = %Hand
 @onready var drawPile: DrawPile = $DrawPile
 @onready var discardPile: DiscardPile = $DiscardPile
 @onready var endTurnBtn := $"End Turn"

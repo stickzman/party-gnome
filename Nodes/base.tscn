@@ -94,17 +94,17 @@ position = Vector2(1237.3373, 472.39853)
 scale = Vector2(0.46296296, 0.47777778)
 
 [node name="Label" type="Label" parent="JambaSprite" unique_id=1697074189]
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -120.636475
-offset_top = -186.95596
-offset_right = 108.363525
-offset_bottom = -131.12263
+anchor_bottom = 0.5
+offset_left = -84.75154
+offset_top = 173.36115
+offset_right = 144.24846
+offset_bottom = 229.19447
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 theme_override_font_sizes/font_size = 32
 text = "Jamba (you)"
 horizontal_alignment = 1
@@ -116,15 +116,14 @@ visible = false
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -352.23987
-offset_top = -215.32037
-offset_right = 667.76013
-offset_bottom = 86.38797
+offset_left = -1389.5916
+offset_top = -426.33795
+offset_right = -369.59155
+offset_bottom = -276.98376
 grow_horizontal = 0
 rotation = -0.30715433
 theme_override_font_sizes/font_size = 107
-text = "LFG!!!!
-You did it! You won!"
+text = "You did it! You won!"
 
 [node name="LoseMessage" type="Label" parent="JambaSprite" unique_id=1573138910]
 unique_name_in_owner = true
@@ -132,15 +131,16 @@ visible = false
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -232.15646
-offset_top = -178.86906
-offset_right = 592.8435
-offset_bottom = -22.119064
+offset_left = -88.37211
+offset_top = -380.98288
+offset_right = 262.67624
+offset_bottom = -117.73288
 grow_horizontal = 0
 theme_override_font_sizes/font_size = 36
 text = "Oof, I'm sorry man.
 Jamba, you should probably just get outta here.
 (you lose)"
+autowrap_mode = 3
 
 [node name="FinalBoss" parent="." unique_id=1236169219 instance=ExtResource("2_thafn")]
 position = Vector2(404.48843, 350.32593)
@@ -152,12 +152,6 @@ offset_right = 1371.9453
 offset_bottom = 203.07777
 theme_override_styles/normal = SubResource("StyleBoxFlat_snegy")
 text = "END TURN"
-
-[node name="Hand" parent="." unique_id=1910097115 instance=ExtResource("8_snegy")]
-offset_left = 691.9843
-offset_top = 725.2111
-offset_right = 691.9843
-offset_bottom = 725.2111
 
 [node name="DrawPile" parent="." unique_id=1445647496 instance=ExtResource("9_rr44f")]
 position = Vector2(119, 666)
@@ -171,6 +165,9 @@ offset_bottom = 603.8611
 [node name="UI" type="CanvasLayer" parent="." unique_id=322166057]
 
 [node name="PotionBelt" parent="UI" unique_id=92051915 instance=ExtResource("10_snegy")]
+unique_name_in_owner = true
+
+[node name="Hand" parent="UI" unique_id=1910097115 instance=ExtResource("8_snegy")]
 unique_name_in_owner = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=13373441]

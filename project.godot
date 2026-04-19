@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Final Boss vs Smoothies"
+config/name="Party Gnome"
 run/main_scene="uid://b5g3k30y5ybs7"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
