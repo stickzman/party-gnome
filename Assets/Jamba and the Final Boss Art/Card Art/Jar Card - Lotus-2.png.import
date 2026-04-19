@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bk1x6ysvyjd2c"
-path="res://.godot/imported/Jar Card - Lotus-1.png.png-b69cd06de7bb67b6411a0b9907fb2818.ctex"
+uid="uid://bvjc4si4hgqcs"
+path="res://.godot/imported/Jar Card - Lotus-2.png-0c77cdd3c741a7b2fdc53eaf841d988e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Jamba and the Final Boss Art/Card Art/Jar Card - Lotus-1.png.png"
-dest_files=["res://.godot/imported/Jar Card - Lotus-1.png.png-b69cd06de7bb67b6411a0b9907fb2818.ctex"]
+source_file="res://Assets/Jamba and the Final Boss Art/Card Art/Jar Card - Lotus-2.png"
+dest_files=["res://.godot/imported/Jar Card - Lotus-2.png-0c77cdd3c741a7b2fdc53eaf841d988e.ctex"]
 
 [params]
 
