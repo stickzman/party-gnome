@@ -2,45 +2,58 @@
 
 [ext_resource type="Script" uid="uid://d0gp1ffqjhdtb" path="res://Nodes/Hand.gd" id="1_hdeju"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x78u4"]
-
 [node name="Hand" type="Control" unique_id=1910097115]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.2, 1.2)
 script = ExtResource("1_hdeju")
 
 [node name="MakePotionButton" type="Button" parent="." unique_id=1549135045]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 397.0
-offset_top = -43.0
-offset_right = 550.871
-offset_bottom = 2.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 396.0
+offset_top = -142.0
+offset_right = 549.871
+offset_bottom = -97.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 20
 text = "Make potion"
 
-[node name="PotentialPotionStatus" type="Panel" parent="." unique_id=479276880]
+[node name="PotentialPotionStatus" type="PanelContainer" parent="." unique_id=37608958]
 layout_mode = 0
-offset_left = -24.0
-offset_top = -141.0
-offset_right = -24.0
-offset_bottom = -141.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_x78u4")
+offset_left = -518.3333
+offset_top = -275.0
+offset_right = 36.666687
+offset_bottom = -247.08333
 
 [node name="PotentialPotionStatusLabel" type="Label" parent="PotentialPotionStatus" unique_id=1866077759]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = -398.0
-offset_top = -6.0
-offset_right = 269.0
-offset_bottom = 17.0
+layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
 text = "No effect. Select some ingredients to show its effect here."
 
 [node name="CardSlots" type="HBoxContainer" parent="." unique_id=244309721]
-layout_mode = 0
-offset_left = -447.0
-offset_top = -113.0
-offset_right = 414.0
-offset_bottom = 123.0
-theme_override_constants/separation = 32
-alignment = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -519.1666
+offset_top = -236.0
+offset_right = 390.8333
+grow_horizontal = 2
+grow_vertical = 0

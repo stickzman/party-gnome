@@ -8,18 +8,18 @@ signal selection_changed(is_selected: bool, _self: Card)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$InteractionButton.pressed.connect(pressed)
-	$EffectLabel.text = ingredient.effectDescription
-	$IngredientSprite.texture = ingredient.sprite
+	%InteractionButton.pressed.connect(pressed)
+	%EffectLabel.text = ingredient.effectDescription
+	%IngredientSprite.texture = ingredient.sprite
 	self.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 
 func pressed():
-	self.is_selected = !self.is_selected
+	self.is_selected = ! self.is_selected
 	if is_selected:
-		$SelectionLabel.text = "Selected"
-		$SelectionLabel.add_theme_color_override("font_color", Color.GREEN)
+		%SelectionLabel.text = "Selected"
+		%SelectionLabel.add_theme_color_override("font_color", Color.GREEN)
 	else:
-		$SelectionLabel.text = "Unselected"
-		$SelectionLabel.add_theme_color_override("font_color", Color.WHITE)
+		%SelectionLabel.text = "Unselected"
+		%SelectionLabel.add_theme_color_override("font_color", Color.WHITE)
 		
-	selection_changed.emit(self.is_selected, self)
+	selection_changed.emit(self.is_selected, self )
