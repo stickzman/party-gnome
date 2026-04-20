@@ -6,6 +6,7 @@
 [node name="Card" type="Control" unique_id=1475444221]
 layout_mode = 3
 anchors_preset = 0
+size_flags_horizontal = 3
 script = ExtResource("1_alvoo")
 
 [node name="IngredientSprite" type="TextureRect" parent="." unique_id=1503151040]

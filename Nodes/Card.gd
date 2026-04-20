@@ -11,7 +11,6 @@ func _ready() -> void:
 	%InteractionButton.pressed.connect(pressed)
 	%EffectLabel.text = ingredient.effectDescription
 	%IngredientSprite.texture = ingredient.sprite
-	self.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 
 func pressed():
 	self.is_selected = ! self.is_selected
